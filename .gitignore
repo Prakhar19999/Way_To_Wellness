@@ -72,7 +72,7 @@ __pycache__/
 HealthCare_Project/db.sqlite3
 
 # Migration files
-HealthCare_Project/way_to_welness/migrations/
+HealthCare_Project/way_to_wellness/migrations/
 
 # Media files
 media/
