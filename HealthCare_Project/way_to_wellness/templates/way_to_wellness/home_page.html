@@ -83,15 +83,15 @@
       <div class="container" data-aos="fade-up">
         <div class="row about-cols">
 
-
+          {%for about in about %}
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="about-col">
               <div class="img">
                 <img src="" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
-              <h2 class="title">EMEGENCY CASES</h2>
-              <p class="pop" style>Paragraph</p>
+              <h2 class="title">{{about.title1}}</h2>
+              <p class="pop" style>{{about.paragraph1}}</p>
             </div>
           </div>
 
@@ -101,8 +101,8 @@
                 <img src="" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
-              <h2 class="title">24 HOUR SERVICE</h2>
-              <p class="pop">Paragraph</p>
+              <h2 class="title">{{about.title2}}</h2>
+              <p class="pop">{{about.paragraph2}}</p>
             </div>
           </div>
 
@@ -112,10 +112,11 @@
                 <img src="" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
-              <h2 class="title">WORKING HOURS</h2></h2>
-              <p class="pop">Paragraph</p>
+              <h2 class="title">{{about.title3}}</h2></h2>
+              <p class="pop">{{about.paragraph3}}</p>
             </div>
           </div>
+          {%endfor%}
 
         </div>
       </div>
