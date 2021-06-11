@@ -24,7 +24,6 @@
         <div class="carousel-inner" role="listbox">
 
 
-
           <div class="carousel-item active" style="background-image: url()">
             <div class="carousel-container">
               <div class="container">
@@ -35,27 +34,18 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url()">
+
+          {%for carousel in carousel%}
+          <div class="carousel-item" style="background-image: url('{{carousel.image.url}}')">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Heading 2</h2></h2>
-                <p class="animate__animated animate__fadeInUp">Quote 2</p>
-                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">Button 2</a>
+                <h2 class="animate__animated animate__fadeInDown">{{carousel.heading}}</h2></h2>
+                <p class="animate__animated animate__fadeInUp">{{carousel.quote}}</p>
+                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">{{carousel.button_name}}</a>
               </div>
             </div>
           </div>
-
-          <div class="carousel-item" style="background-image: url()">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Heading 3</h2>
-                <p class="animate__animated animate__fadeInUp">Quote 3</p>
-                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">button3</a></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+          {% endfor%}
 
 
         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
