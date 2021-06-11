@@ -274,29 +274,18 @@
         </header>
         <div class="owl-carousel testimonials-carousel">
 
-
-
+          {%for testimonial in testimonials%}
           <div class="testimonial-item">
-            <img src="" class="testimonial-img" alt="Image">
-            <h3>Name</h3>
-            <h4>Profession</h4>
+            <img src="{{testimonial.image.url}}" class="testimonial-img" alt="Image">
+            <h3>{{testimonial.name}}</h3>
+            <h4>{{testimonial.profession}}</h4>
             <p>
               <img src="{% static 'img/quote-sign-left.png' %}" class="quote-sign-left" alt="left quote">
-              Statement
+              {{testimonial.statement}}
               <img src="{% static 'img/quote-sign-right.png' %}" class="quote-sign-right" alt="right quote">
             </p>
           </div>
-
-          <div class="testimonial-item">
-              <img src="" class="testimonial-img" alt="image">
-              <h3>Name</h3>
-              <h4>Profession</h4>
-              <p>
-                <img src="{% static 'img/quote-sign-left.png' %}" class="quote-sign-left" alt="left quote">
-                Statement
-                <img src="{% static 'img/quote-sign-right.png' %}" class="quote-sign-right" alt="right quote">
-              </p>
-          </div>
+          {%endfor%}
           
 
         </div>
