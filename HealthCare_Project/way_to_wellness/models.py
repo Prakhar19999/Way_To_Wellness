@@ -23,3 +23,17 @@ class Carousel(models.Model):
     
     class Meta:
         verbose_name_plural='Carousel'
+
+class Services(models.Model):
+    title1=models.TextField()
+    paragraph1=models.TextField()
+    image1=models.ImageField(upload_to='landing_page_services/')
+    title2=models.TextField()
+    paragraph2=models.TextField()
+    image2=models.ImageField(upload_to='landing_page_services/')
+    title3=models.TextField()
+    paragraph3=models.TextField()
+    image3=models.ImageField(upload_to='landing_page_services/')
+
+    class Meta:
+        verbose_name_plural='Services'
