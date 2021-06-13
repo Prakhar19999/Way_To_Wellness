@@ -24,7 +24,6 @@
         <div class="carousel-inner" role="listbox">
 
 
-
           <div class="carousel-item active" style="background-image: url()">
             <div class="carousel-container">
               <div class="container">
@@ -35,27 +34,18 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url()">
+
+          {%for carousel in carousel%}
+          <div class="carousel-item" style="background-image: url('{{carousel.image.url}}')">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Heading 2</h2></h2>
-                <p class="animate__animated animate__fadeInUp">Quote 2</p>
-                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">Button 2</a>
+                <h2 class="animate__animated animate__fadeInDown">{{carousel.heading}}</h2></h2>
+                <p class="animate__animated animate__fadeInUp">{{carousel.quote}}</p>
+                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">{{carousel.button_name}}</a>
               </div>
             </div>
           </div>
-
-          <div class="carousel-item" style="background-image: url()">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Heading 3</h2>
-                <p class="animate__animated animate__fadeInUp">Quote 3</p>
-                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">button3</a></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+          {% endfor%}
 
 
         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
@@ -93,15 +83,15 @@
       <div class="container" data-aos="fade-up">
         <div class="row about-cols">
 
-
+          {%for about in about %}
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="about-col">
               <div class="img">
                 <img src="" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
-              <h2 class="title">EMEGENCY CASES</h2>
-              <p class="pop" style>Paragraph</p>
+              <h2 class="title">{{about.title1}}</h2>
+              <p class="pop" style>{{about.paragraph1}}</p>
             </div>
           </div>
 
@@ -111,8 +101,8 @@
                 <img src="" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
-              <h2 class="title">24 HOUR SERVICE</h2>
-              <p class="pop">Paragraph</p>
+              <h2 class="title">{{about.title2}}</h2>
+              <p class="pop">{{about.paragraph2}}</p>
             </div>
           </div>
 
@@ -122,10 +112,11 @@
                 <img src="" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
-              <h2 class="title">WORKING HOURS</h2></h2>
-              <p class="pop">Paragraph</p>
+              <h2 class="title">{{about.title3}}</h2></h2>
+              <p class="pop">{{about.paragraph3}}</p>
             </div>
           </div>
+          {%endfor%}
 
         </div>
       </div>
@@ -143,19 +134,22 @@
 
         <div class="container">
 
+
+          
+            {%for service in services %}
               <div class="row">
 
                 <div class="col-sm" data-aos="fade-up">
                     <div class="card" style="padding: auto;">
                       <div class="card__head">
-                        <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{% static 'img/esummit/auction.jpg'%}" alt="Card image"></div>
+                        <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{{service.image1.url}}" alt="Card image"></div>
                       </div>
                       <div class="card__body">
-                        <h2 class="card__headline" style="color: #7FFFD4;"><strong>Title</strong></h2>
+                        <h2 class="card__headline" style="color: #7FFFD4;"><strong>{{service.title1}}</strong></h2>
                         </div>
                         <div class="card__foot">
                           <p class="card__text" >
-                            Paragraph
+                            {{service.paragraph1}}
                           </p>
                         </div>
                       <div class="card__border"></div>
@@ -165,14 +159,14 @@
                 <div class="col-sm" data-aos="fade-up">
                     <div class="card" style="padding: auto;">
                       <div class="card__head">
-                        <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{% static 'img/esummit/etalk.jpeg'%}" alt="Card image"></div>
+                        <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{{service.image2.url}}" alt="Card image"></div>
                       </div>
                       <div class="card__body">
-                        <h2 class="card__headline" style="color: #7FFFD4 "><strong>Title</strong></h2>
+                        <h2 class="card__headline" style="color: #7FFFD4 "><strong>{{service.title2}}</strong></h2>
                         </div>
                       <div class="card__foot">
                       <p class="card__text">
-                       Paragraph
+                        {{service.paragraph2}}
                       </p>
                     </div>
                     <div class="card__border"></div>
@@ -182,80 +176,26 @@
                 <div class="col-sm" data-aos="fade-up">
                   <div class="card">
                     <div class="card__head">
-                      <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{% static 'img/esummit/pitchfest.jpeg'%}" alt="Card image"></div>
+                      <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{{service.image3.url}}" alt="Card image"></div>
                     </div>
                     <div class="card__body">
-                      <h2 class="card__headline" style="color: #7FFFD4 "><strong>Title</strong></h2>
+                      <h2 class="card__headline" style="color: #7FFFD4 "><strong>{{service.title3}}</strong></h2>
                       </div>
                     <div class="card__foot">
                       <p class="card__text">
-                       Paragraph
+                        {{service.paragraph3}}
                       </p>
                     </div>
                     <div class="card__border"></div>
                   </div>
                 </div>
-
+                
               </div>
 
               <br>
+              {%endfor%}
+             
 
-              <div class="row">
-
-                <div class="col-sm" data-aos="fade-up">
-                    <div class="card" style="padding: auto;">
-                      <div class="card__head">
-                        <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{% static 'img/esummit/auction.jpg'%}" alt="Card image"></div>
-                      </div>
-                      <div class="card__body">
-                        <h2 class="card__headline" style="color: #7FFFD4;"><strong>Title</strong></h2>
-                        </div>
-                        <div class="card__foot">
-                          <p class="card__text" >
-                            Paragraph
-                          </p>
-                        </div>
-                      <div class="card__border"></div>
-                    </div>
-                </div>
-
-                <div class="col-sm" data-aos="fade-up">
-                    <div class="card" style="padding: auto;">
-                      <div class="card__head">
-                        <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{% static 'img/esummit/etalk.jpeg'%}" alt="Card image"></div>
-                      </div>
-                      <div class="card__body">
-                        <h2 class="card__headline" style="color: #7FFFD4 "><strong>Title</strong></h2>
-                        </div>
-                      <div class="card__foot">
-                      <p class="card__text">
-                       Paragraph
-                      </p>
-                    </div>
-                    <div class="card__border"></div>
-                  </div>
-                </div>
-
-                <div class="col-sm" data-aos="fade-up">
-                  <div class="card">
-                    <div class="card__head">
-                      <div class="card__image"><img class="card-img-top" style="width: 100%; height: 100%;" src="{% static 'img/esummit/pitchfest.jpeg'%}" alt="Card image"></div>
-                    </div>
-                    <div class="card__body">
-                      <h2 class="card__headline" style="color: #7FFFD4 "><strong>Title</strong></h2>
-                      </div>
-                    <div class="card__foot">
-                      <p class="card__text">
-                       Paragraph
-                      </p>
-                    </div>
-                    <div class="card__border"></div>
-                  </div>
-                </div>
-
-              </div>
-
-              <br>
 
               <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp" style="position: absolute; right: 10px;">Go Somewhere  <i class="fa fa-arrow-right"></i></a>
               </div>
@@ -274,39 +214,24 @@
         </header>
         <div class="owl-carousel testimonials-carousel">
 
-
-
+          {%for testimonial in testimonials%}
           <div class="testimonial-item">
-            <img src="" class="testimonial-img" alt="Image">
-            <h3>Name</h3>
-            <h4>Profession</h4>
+            <img src="{{testimonial.image.url}}" class="testimonial-img" alt="Image">
+            <h3>{{testimonial.name}}</h3>
+            <h4>{{testimonial.profession}}</h4>
             <p>
               <img src="{% static 'img/quote-sign-left.png' %}" class="quote-sign-left" alt="left quote">
-              Statement
+              {{testimonial.statement}}
               <img src="{% static 'img/quote-sign-right.png' %}" class="quote-sign-right" alt="right quote">
             </p>
           </div>
-
-          <div class="testimonial-item">
-              <img src="" class="testimonial-img" alt="image">
-              <h3>Name</h3>
-              <h4>Profession</h4>
-              <p>
-                <img src="{% static 'img/quote-sign-left.png' %}" class="quote-sign-left" alt="left quote">
-                Statement
-                <img src="{% static 'img/quote-sign-right.png' %}" class="quote-sign-right" alt="right quote">
-              </p>
-          </div>
+          {%endfor%}
           
 
         </div>
       </div>
     </section>
 <!-- ======= End Testmonial Section ======= -->
-
-
-        <br>
-
 
 <!--Appoinment Section-->
     <section style="background-color:white;">
