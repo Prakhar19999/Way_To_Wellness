@@ -30,6 +30,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/social_media.css' %}" rel="stylesheet">
 
 </head>
 
@@ -63,6 +64,20 @@
 
   {% block content %}{% endblock %}
 
+
+    <!--Left Bottom Social Media-->
+      <div id="circularMenu1" class="circular-menu circular-menu-left" style="z-index: 100;">
+        <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+          <i class="fa fa-users"></i>
+        </a>
+        <menu class="items-wrapper">
+          <a href="#" class="menu-item fa fa-facebook"></a>
+          <a href="#" class="menu-item fa fa-twitter"></a>
+          <a href="#" class="menu-item fa fa-linkedin"></a>
+          <a href="#" class="menu-item fa fa-cog"></a>
+        </menu>
+      </div>
+    <!--Left Bottom Social Media Ends-->
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
@@ -118,7 +133,7 @@
   </div>
   </footer>
 <!-- End Footer -->
-  
+      <!-- Button trigger modal -->
 
 
 <!--Back To Top Button-->
@@ -139,6 +154,5 @@
   
   <!-- Template Main JS File -->
 <script src="{% static 'js/main.js' %}"></script>
-<script src="{% static 'js/contact_form.js' %}"></script>
 </body>
 </html>
