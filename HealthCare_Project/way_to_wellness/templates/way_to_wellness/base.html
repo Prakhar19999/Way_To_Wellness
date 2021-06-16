@@ -31,6 +31,8 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
   <link href="{% static 'css/social_media.css' %}" rel="stylesheet">
+  <link href="{% static 'css/appointment_button.css' %}" rel="stylesheet">
+  <link href="{% static 'css/modal_form.css' %}" rel="stylesheet">
 
 </head>
 
@@ -61,6 +63,104 @@
 
   </header>
 <!-- End Header -->
+
+<!--Appointment Button-->
+<a class="float">
+  <button type="button" class="btn btn-unique" data-toggle="modal" data-target="#modalContactForm">
+    <strong>APPOINTMENT</strong>
+  </button>
+</a>
+<!--Appointment Button Ends-->
+
+<!-- Modal -->
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Make an Appointment</h4>
+    </div>
+
+    <div class="modal-body mx-3">
+
+      <form method="POST">
+        {%csrf_token%}
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user prefix grey-text"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope prefix grey-text"></i></span>
+          </div>
+          <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone prefix grey-text"></i></span>
+          </div>
+          <input type="phone" class="form-control" placeholder="Contact Number" aria-label="Phone" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> <i class="fa fa-balance-scale prefix grey-text"></i></span>
+          </div>
+          <input type="number" class="form-control" placeholder="Weight in KGs" aria-label="Weight" aria-describedby="basic-addon1" step="0.01">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-pencil prefix grey-text"></i></span>
+          </div>
+          <input type="number" class="form-control" placeholder="Your Height in ft & inch" aria-label="Height" aria-describedby="basic-addon1" 
+          step="0.001">
+        </div>
+
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="fa fa-female" aria-hidden="true"></i>
+              <i class="fa fa-male" aria-hidden="true"></i>
+            </span>
+          </div>
+          <input type="number" class="form-control" placeholder="Your Age" aria-label="Age" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="md-form mb-4">
+          <label data-error="wrong" data-success="right" for="date">Preferred Appointment Date</label>
+          <input type="date" id="date" class="form-control validate">
+        </div>
+
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="time">Preferred Appointment Time</label>
+          <input type="time" id="time" class="form-control validate">
+        </div>
+
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> <i class="fa fa-envelope prefix grey-text"></i></span>
+          </div>
+          <textarea type="text" class="form-control" placeholder="Your Message" aria-label="Message" aria-describedby="basic-addon1"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-success text-center">Book Appointment <i class="fa fa-paper-plane-o ml-1"></i></button>
+
+      </form>
+    </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <a data-dismiss="modal"><strong>Close</strong></a>
+        </div>
+  </div>
+</div>
+</div>
+<!--Modal Ends-->
 
   {% block content %}{% endblock %}
 
