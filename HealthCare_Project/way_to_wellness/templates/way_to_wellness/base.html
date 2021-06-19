@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,8 +87,8 @@ aria-hidden="true">
 
       <form method="POST">
         {%csrf_token%}
-
-        <div class="input-group mb-4">
+        {{ap_form|crispy}}
+        <!--<div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="fa fa-user prefix grey-text"></i></span>
           </div>
@@ -148,7 +149,7 @@ aria-hidden="true">
             <span class="input-group-text" id="basic-addon1"> <i class="fa fa-envelope prefix grey-text"></i></span>
           </div>
           <textarea type="text" class="form-control" placeholder="Your Message" aria-label="Message" aria-describedby="basic-addon1"></textarea>
-        </div>
+        </div>-->
         
         <button type="submit" class="btn btn-success text-center">Book Appointment <i class="fa fa-paper-plane-o ml-1"></i></button>
 

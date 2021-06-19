@@ -55,3 +55,17 @@ class Carousel(models.Model):
     
     class Meta:
         verbose_name_plural='Carousel'
+
+
+class Appointment(models.Model):
+    name=models.CharField(max_length=50)
+    email=models.EmailField()
+    mobile_no=models.CharField(max_length=15)
+    weight=models.FloatField()
+    height=models.FloatField()
+    age=models.IntegerField()
+    time=models.TimeField()
+    msg=models.TextField()
+
+    def __str__(self):
+        return self.name+'('+str(self.id)+')'
