@@ -73,6 +73,6 @@ HealthCare_Project/db.sqlite3
 
 # Migration files
 HealthCare_Project/way_to_wellness/migrations/
-
+HealthCare_Project/calculators/migrations/
 # Media files
 media/
