@@ -1,0 +1,6 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="POST" action="">
+    {%csrf_token%}
+    {{bmiform|crispy}}
+</form>

@@ -1,0 +1,42 @@
+{% load static %}
+<link href="{% static 'css/nutri_form.css' %}" rel="stylesheet">
+
+
+<div class="card-form">
+    <form class="signup" method="POST" action="">
+        {%csrf_token%}
+      <div class="form-title">Sign Up for our Newsletter!</div>
+      <div class="form-body">
+        <div class="row">
+          <input type="number" id="weight" name="weight" placeholder="Weight" step=0.01><br>
+          <input type="number" id="height" name="height" placeholder="Height in Inches" step=0.01><br>
+          <input type="number" id="age" name="age" placeholder="Age">
+
+            <label for="male" style="color: black;">Male</label>
+            <input name="gender" id="male" type="radio" value="Male">
+
+            <label for="femail" style="color: black;">Female</label>
+            <input name="gender" id="female" type="radio" value="Female">
+
+            <label for="sedentary" style="color: black;">Sedentary</label>
+            <input name="lifestyle" id="sedentary" type="radio" value="Sedentary">
+            <label for="lightly_active" style="color: black;">Lightly Active</label>
+            <input name="lifestyle" id="lightly_active" type="radio" value="Lightly_Active">
+            <label for="moderate_active" style="color: black;">Moderate Active</label>
+            <input name="lifestyle" id="moderate_active" type="radio" value="Moderate_Active">
+            <label for="very_active" style="color: black;">Very Active</label>
+            <input name="lifestyle" id="very_active" type="radio" value="Very_Active">
+            <label for="extra_active" style="color: black;">Extra Active</label>
+            <input name="lifestyle" id="extra_active" type="radio" value="Extra_Active">
+
+        </div>
+        <!--<div class="row">
+          <input type="email" id="email" name="email" placeholder="Email Address*">
+        </div>-->
+      </div>
+      <div class="rule"></div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-success text-center">Book Appointment<i class="fa fa-paper-plane-o ml-1"></i></button>
+      </div>
+    </form>
+  </div>

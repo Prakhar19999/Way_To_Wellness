@@ -1,0 +1,32 @@
+{% load static %}
+<link href="{% static 'css/BF_form.css' %}" rel="stylesheet">
+
+
+<div class="card-form">
+    <form class="signup" method="POST" action="">
+        {%csrf_token%}
+      <div class="form-title">Sign Up for our Newsletter!</div>
+      <div class="form-body">
+        <div class="row">
+          <input type="number" id="weight" name="weight" placeholder="Weight" step=0.01>
+          <input type="number" id="waist" name="waist" placeholder="Waist Measurement" step=0.01>
+          <input type="number" id="wrist" name="wrist" placeholder="Wrist Measurement" step=0.01>
+          <input type="number" id="hip" name="hip" placeholder="Hip Measurement" step=0.01>
+          <input type="number" id="forearm" name="forearm" placeholder="Forearm Measurement" step=0.01>
+
+          <label for="male" style="color: black;">Male</label>
+          <input name="gender" id="male" type="radio" value="Male">
+
+          <label for="femail" style="color: black;">Female</label>
+          <input name="gender" id="female" type="radio" value="Female">
+        </div>
+        <!--<div class="row">
+          <input type="email" id="email" name="email" placeholder="Email Address*">
+        </div>-->
+      </div>
+      <div class="rule"></div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-success text-center">Book Appointment<i class="fa fa-paper-plane-o ml-1"></i></button>
+      </div>
+    </form>
+  </div>
