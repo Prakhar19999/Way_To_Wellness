@@ -12,7 +12,7 @@ class BMI(models.Model):
 
 class Water(models.Model):
     weight=models.FloatField()
-    exercise_time=models.IntegerField()
+    exercise_time=models.FloatField()
 
     def __str__(self):
         return self.id

@@ -23,10 +23,14 @@ def Water(requests):
     ans=0
     if requests.method =='POST':
         form=WaterForm(requests.POST)
-        F1=float(requests.POST.get('weight'))*0.044
-        F2=(float(requests.POST.get('time'))/30)*0.335
-        ans=F1+F2
-    return render(requests,'calculators/water.html')
+        if form.is_valid():
+            weight=float(requests.POST.get('weight'))
+            time=float(requests.POST.get('exercise_time'))
+            F1=weight*0.044
+            F2=(time/30)*0.355
+            ans=F1+F2
+    context={'water_form':form}
+    return render(requests,'calculators/water.html',context)
 
 def WHR(requests):
     form=WHRform()
