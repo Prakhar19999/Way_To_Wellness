@@ -23,26 +23,13 @@
         <div class="carousel-inner" role="listbox">
 
 
-          <div class="carousel-item active" style="background-image: url()">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Hading 1</h2>
-                <p class="animate__animated animate__fadeInUp">Quote 1</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Button1</a>
-              </div>
-            </div>
+          {%if carousel %}
+          <div class="carousel-item active" style="background-image: url({{carousel.image.url}})">
           </div>
+          {%endif%}
 
-
-          {%for carousel in carousel%}
-          <div class="carousel-item" style="background-image: url('{{carousel.image.url}}')">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">{{carousel.heading}}</h2></h2>
-                <p class="animate__animated animate__fadeInUp">{{carousel.quote}}</p>
-                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">{{carousel.button_name}}</a>
-              </div>
-            </div>
+          {%for item in carousel_items%}
+          <div class="carousel-item" style="background-image: url('{{item.image.url}}')">
           </div>
           {% endfor%}
 

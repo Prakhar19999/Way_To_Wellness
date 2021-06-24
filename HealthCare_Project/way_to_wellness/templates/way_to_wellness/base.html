@@ -45,12 +45,13 @@
       <div class="row justify-content-center">
         <div class="col-xl-11 d-flex align-items-center">
           
-          <a href="{% url 'home_page'%}" class="logo mr-auto"><img src="{% static 'img/waytowellness-logo.jpeg' %}" alt="" class="img-fluid">
+          <a class="logo mr-auto">
 
           <nav class="nav-menu d-none d-lg-block">
             <ul>
               <li {%if request.resolver_match.url_name == 'home_page' %}class="active"{% endif %}><a href="{% url 'home_page' %}">Home</a></li>
               <li><a href="#about">About Us</a></li>
+              <li {%if request.resolver_match.url_name == 'calculators' %}class="active"{% endif %}><a href="{% url 'calculators' %}">Calculators</a></li>
               <li><a href="#footer">Contact Us</a></li>
             </ul>
           </nav>
@@ -175,7 +176,7 @@ aria-hidden="true">
           <a href="#" class="menu-item fa fa-facebook"></a>
           <a href="#" class="menu-item fa fa-twitter"></a>
           <a href="#" class="menu-item fa fa-linkedin"></a>
-          <a href="#" class="menu-item fa fa-cog"></a>
+          <a href="https://wa.me/+918010373183?text=Hi%20prakhar%2C%20I%20am%20vinit" class="menu-item fa fa-whatsapp"></a>
         </menu>
       </div>
     <!--Left Bottom Social Media Ends-->

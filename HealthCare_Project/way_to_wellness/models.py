@@ -45,13 +45,7 @@ class AboutUs(models.Model):
         verbose_name_plural='About Us'
 
 class Carousel(models.Model):
-    heading=models.TextField()
-    quote=models.TextField()
-    button_name=models.TextField()
     image=models.ImageField(upload_to='landing_page_carousel/')
-
-    def __str__(self):
-        return self.heading
     
     class Meta:
         verbose_name_plural='Carousel'

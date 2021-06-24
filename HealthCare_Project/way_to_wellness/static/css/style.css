@@ -648,10 +648,6 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
   background-repeat: no-repeat;
 }
 
-#intro .carousel-item::before {
-  content: '';
-  background-color: rgba(0, 0, 0, 0.7);
-}
 
 #intro .carousel-container {
   display: flex;
@@ -783,7 +779,7 @@ section {
   content: '';
   position: absolute;
   display: block;
-  width: 120px;
+  width: 100px;
   height: 1px;
   background: #ddd;
   bottom: 1px;
