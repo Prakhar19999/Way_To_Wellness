@@ -4,7 +4,6 @@
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-<link href="{% static 'css/contact_form.css' %}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
 
   <!-- UIkit JS -->
@@ -24,26 +23,13 @@
         <div class="carousel-inner" role="listbox">
 
 
-          <div class="carousel-item active" style="background-image: url()">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Hading 1</h2>
-                <p class="animate__animated animate__fadeInUp">Quote 1</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Button1</a>
-              </div>
-            </div>
+          {%if carousel %}
+          <div class="carousel-item active" style="background-image: url({{carousel.image.url}})">
           </div>
+          {%endif%}
 
-
-          {%for carousel in carousel%}
-          <div class="carousel-item" style="background-image: url('{{carousel.image.url}}')">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">{{carousel.heading}}</h2></h2>
-                <p class="animate__animated animate__fadeInUp">{{carousel.quote}}</p>
-                <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">{{carousel.button_name}}</a>
-              </div>
-            </div>
+          {%for item in carousel_items%}
+          <div class="carousel-item" style="background-image: url('{{item.image.url}}')">
           </div>
           {% endfor%}
 
@@ -232,48 +218,6 @@
       </div>
     </section>
 <!-- ======= End Testmonial Section ======= -->
-
-<!--Appoinment Section-->
-    <section style="background-color:white;">
-      <div data-aos="fade-up">
-
-            <div class="appointment-container">
-
-              <div class="left-coloumn"></div>
-
-              <div class="right-coloumn">
-                <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-                <div class="dark-mode">Dark Mode</div>
-              </div>
-                
-              <h1>Make an Appointment</h1>
-              <p class="form-heading">Planning to visit Indonesia soon? Get insider tips on where to go, things to do and find best deals for your next adventure.</p>
-                
-                <form id="contact-form" method="post">
-                  <label for="name">Full name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-                  <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-                  <label for="phone">Contact Number</label>
-                    <input type="phone" id="phone" name="phone" min="5" max="10" placeholder="Your Contact Number" required>
-                  <label for="date">Date</label>
-                    <input type="date" id="date" name="date" placeholder="Appointment Date" required>
-                  <label for="message">Message</label>
-                    <textarea rows="6" placeholder="Your Message" id="message" name="message" required></textarea>
-                  <button type="submit" id="submit" name="submit">Send</button>
-                </form>
-
-              </div>
-            </div>
-
-        </div>
-    </section>
-<!--Ends Appointment Section-->
-
 
 </main>
 {% endblock %}

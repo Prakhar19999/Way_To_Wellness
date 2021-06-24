@@ -1,0 +1,32 @@
+.modal-header {
+    background-color: #7FFFD4
+}
+.modal-footer{
+    background-color: #7FFFD4
+}
+.modal-footer a{
+color: #000;
+}
+form button{
+    margin-left: 125px;
+}
+@media screen and (max-width:1000px) {
+    form button{
+        margin-left: 65px;
+    }
+}
+@media screen and (max-width:750px) {
+    form button{
+        margin-left: 70px;
+    }
+}
+@media screen and (max-width:640px) {
+    form button{
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width:432px) {
+    form button{
+        margin-left: 45px;
+    }
+}

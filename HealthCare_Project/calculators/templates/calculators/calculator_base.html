@@ -1,0 +1,49 @@
+{% extends 'calculators/base_event.html' %}
+{% load static %}
+{%block content%}
+
+<div id="event-type-all" style="padding-top: 150px;">
+    <header class="section-header">
+        <h3 style="z-index: 10;" id="ae">Calculators</h3>
+    </header>
+    <div class="container">
+        <div class="row">
+
+            {% if count %}
+                {% for calculator in calculator %}
+                <div class="col-md-4">
+                    <section
+                        class="portfolio-details animate__animated animate__fadeInUp shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="container">
+
+                            <div class="portfolio-details-container">
+                                <div class="portfolio-details-carousel">
+                                    <img src="{{calculator.image.url}}" class="img-fluid" style="width: 300px; height: 200px; "
+                                        alt="Image">
+                                </div>
+                            </div>
+
+                            <div class="portfolio-description">
+                                <h2 style="font-size: 22px;">{{calculator.title}}</h2>
+                                <p class="pop">
+                                    {{calculator.paragraph}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="/calculators/{{calculator.url_name}}" target="blank"
+                                class="btn btn-primary stretched-link">Calculate {{calculator.title}}
+                            </a>
+                        </div>
+                    </section>
+                </div>
+                {% endfor %}
+            {%endif%}
+            
+
+        </div>
+    </div>
+</div>
+
+</div>
+{%endblock%}
