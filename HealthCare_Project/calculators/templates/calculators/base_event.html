@@ -62,10 +62,10 @@
 
                 <ul>
 
-                  <li {%if request.resolver_match.url_name == 'home_page' %}class="active" {% endif %}><a
-                      href="{%url 'home_page' %}">Home</a></li>
-                      <li><a href="#about">About Us</a></li>
-                      <li><a href="#footer">Contact Us</a></li>
+                  <li {%if request.resolver_match.url_name == 'home_page' %}class="active"{% endif %}><a href="{% url 'home_page' %}">Home</a></li>
+                  <li><a href="#about">About Us</a></li>
+                  <li {%if request.resolver_match.url_name == 'calculators' %}class="active"{% endif %}><a href="{% url 'calculators' %}">Calculators</a></li>
+                  <li><a href="#footer">Contact Us</a></li>
 
                   <!--<li><a href="#footer">Contact Us</a></li>-->
 
