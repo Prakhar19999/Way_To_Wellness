@@ -7,7 +7,7 @@ def home(requests):
    if requests.method == "POST":
       form=AppointmentForm(requests.POST)
       if form.is_valid():
-         form.save()
+         print(requests.POST)
    form=AppointmentForm()
    testimonials=Testimonials.objects.all()
    carousel=Carousel.objects.all()

@@ -64,8 +64,9 @@ class Appointment(models.Model):
     weight=models.FloatField()
     height=models.FloatField()
     age=models.IntegerField()
+    date=models.DateField()
     time=models.TimeField()
-    msg=models.TextField()
+    msg=models.TextField(blank=True)
 
     def __str__(self):
         return self.name+'('+str(self.id)+')'
