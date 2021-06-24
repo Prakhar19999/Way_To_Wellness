@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from way_to_wellness.forms import *
 
 def calculators(requests):
     calculators=Calculator.objects.all()
+    ap_form=AppointmentForm()
     count=0
     count=Calculator.objects.all().count()
-    context={'calculator':calculators,'count':count}
+    context={'calculator':calculators,'count':count,'ap_form':ap_form}
     return render(requests,'calculators/calculator_base.html',context)
 
 def BMI(requests):

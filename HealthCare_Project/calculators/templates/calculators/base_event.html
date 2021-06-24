@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior: smooth;">
 
@@ -32,6 +33,10 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/social_media.css' %}" rel="stylesheet">
+  <link href="{% static 'css/appointment_button.css' %}" rel="stylesheet">
+  <link href="{% static 'css/modal_form.css' %}" rel="stylesheet">
+
 
 
 </head>
@@ -49,14 +54,7 @@
 
           <div class="col-xl-11 d-flex align-items-center">
 
-
-
-
-
-            <a href="{% url 'home_page' %}" class="logo mr-auto"><img src="{%static 'img/logo.png' %}" alt=""
-                class="img-fluid">
-
-
+            <a class="logo mr-auto">
 
               <nav class="nav-menu d-none d-lg-block">
 
@@ -81,9 +79,119 @@
 
     </header><!-- End Header -->
 
+    <a class="float">
+      <button type="button" class="btn btn-unique" data-toggle="modal" data-target="#modalContactForm">
+        <strong>APPOINTMENT</strong>
+      </button>
+    </a>
+
+    <!-- Modal -->
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Make an Appointment</h4>
+    </div>
+
+    <div class="modal-body mx-3">
+
+      <form method="POST">
+        {%csrf_token%}
+        {{ap_form|crispy}}
+        <!--<div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user prefix grey-text"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope prefix grey-text"></i></span>
+          </div>
+          <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone prefix grey-text"></i></span>
+          </div>
+          <input type="phone" class="form-control" placeholder="Contact Number" aria-label="Phone" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> <i class="fa fa-balance-scale prefix grey-text"></i></span>
+          </div>
+          <input type="number" class="form-control" placeholder="Weight in KGs" aria-label="Weight" aria-describedby="basic-addon1" step="0.01">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-pencil prefix grey-text"></i></span>
+          </div>
+          <input type="number" class="form-control" placeholder="Your Height in ft & inch" aria-label="Height" aria-describedby="basic-addon1" 
+          step="0.001">
+        </div>
+
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="fa fa-female" aria-hidden="true"></i>
+              <i class="fa fa-male" aria-hidden="true"></i>
+            </span>
+          </div>
+          <input type="number" class="form-control" placeholder="Your Age" aria-label="Age" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="md-form mb-4">
+          <label data-error="wrong" data-success="right" for="date">Preferred Appointment Date</label>
+          <input type="date" id="date" class="form-control validate">
+        </div>
+
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="time">Preferred Appointment Time</label>
+          <input type="time" id="time" class="form-control validate">
+        </div>
+
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> <i class="fa fa-envelope prefix grey-text"></i></span>
+          </div>
+          <textarea type="text" class="form-control" placeholder="Your Message" aria-label="Message" aria-describedby="basic-addon1"></textarea>
+        </div>-->
+        
+        <button type="submit" class="btn btn-success text-center">Book Appointment <i class="fa fa-paper-plane-o ml-1"></i></button>
+
+      </form>
+    </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <a data-dismiss="modal"><strong>Close</strong></a>
+        </div>
+  </div>
+</div>
+</div>
+<!--Modal Ends-->
+
     {% block content %}{% endblock %}
   </section>
   <!-- ======= Footer ======= -->
+
+  <!--Left Bottom Social Media-->
+  <div id="circularMenu1" class="circular-menu circular-menu-left" style="z-index: 100;">
+    <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+      <i class="fa fa-users"></i>
+    </a>
+    <menu class="items-wrapper">
+      <a href="#" class="menu-item fa fa-facebook"></a>
+      <a href="#" class="menu-item fa fa-twitter"></a>
+      <a href="#" class="menu-item fa fa-linkedin"></a>
+      <a href="https://wa.me/+918010373183?text=Hi%20prakhar%2C%20I%20am%20vinit" class="menu-item fa fa-whatsapp"></a>
+    </menu>
+  </div>
+<!--Left Bottom Social Media Ends-->
 
   <footer id="footer">
 
@@ -98,12 +206,10 @@
 
           <div class="col-lg-3 footer-info">
 
-            <h3>Entrepreneurship Development Cell</h3>
-            <p style="border-left: 4px solid #f38b36; text-align:center;">NIT Durgapur</p>
+            <h3>Organization name</h3>
+            <p style="border-left: 4px solid #7FFFD4; text-align:center;">State</p>
             <br>
-            <p style="text-align:center;">Made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                href="">Web-Team </a></p>
-            <p style="text-align:center;">© 2021 EDC. All Rights Reserved.</p>
+            <p style="text-align:center;">© 2021 X. All Rights Reserved.</p>
           </div>
 
           <div class="col-lg-1">
@@ -115,14 +221,13 @@
 
             <p>
 
-              <i class="fa fa-map-marker"> :</i> Mahatma Gandhi Avenue,<br> A-Zone, Durgapur,
-              West Bengal <br> Durgapur: 713209
+              <i class="fa fa-map-marker"> :</i> location
               <br>
 
-              <i class="fa fa-phone "></i> : +91 77970 85815 (Rima Roy)<br>
+              <i class="fa fa-phone "></i> : contact number<br>
 
               <i class="fa fa-envelope-o"> :</i><a href="mailto:edcnitd.official@gmail.com">
-                edcnitd.official@gmail.com</a><br>
+               mail</a><br>
 
             </p>
 
@@ -236,7 +341,6 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main1.js' %}"></script>
-  <script src="{% static 'loader/loader.js' %}"></script>
 
 </body>
 
