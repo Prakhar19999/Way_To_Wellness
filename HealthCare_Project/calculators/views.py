@@ -85,9 +85,8 @@ def BMR(requests):
 
 def CalMacroNutri(requests):
     nutri_form=NutriForm()
-    bmr_men=0
-    bmr_women=0
     bmr=0
+    calorie=0
     if requests.method=='POST':
         nutri_form=NutriForm(requests.POST)
         if nutri_form.is_valid():
@@ -97,23 +96,28 @@ def CalMacroNutri(requests):
             age=float(requests.POST.get('age'))
             gender=requests.POST.get('gender')
             lifestyle=requests.POST.get('lifestyle')
+
             if gender=="Male":
-                bmr_men=1
                 bmr=655+(9.6*weight)+(1.8*height)-(4.7*age)
-            else:
-                bmr_women=1
+            elif gender=="Female":
                 bmr=66+(13.7*weight)+(5*height)-(6.8*age)
+
             if lifestyle=="Sedentary":
-                bmr=bmr*1.2
+                calorie=bmr*1.2
             elif lifestyle=="Lightly Active":
-                bmr=bmr*1.375
+                calorie=bmr*1.375
             elif lifestyle=="Moderately Active":
-                bmr=bmr*1.55
+                calorie=bmr*1.55
             elif lifestyle=="Very Active":
-                bmr=bmr*1.725
+                calorie=bmr*1.725
             elif lifestyle=="Extra Active":
-                bmr=bmr*1.9
-    return render(requests,'calculators/nutri.html')
+                calorie=bmr*1.9
+                
+    nutriJSON=dumps({
+        'calorie':calorie,
+    },default=str)
+    context={'nutri_result':nutriJSON,'calorie':calorie}
+    return render(requests,'calculators/nutri.html',context)
 
 def BF(requests):
     bf_form=BFform()

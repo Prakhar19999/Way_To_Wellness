@@ -62,7 +62,7 @@ class CalMacroNutri(models.Model):
     lifestyle=models.TextField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Calorie and Macro Nutritients"
