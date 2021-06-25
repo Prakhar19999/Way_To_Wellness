@@ -27,7 +27,7 @@ class Water(models.Model):
     exercise_time=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Water"

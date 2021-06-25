@@ -40,7 +40,11 @@ def Water(requests):
             F1=weight*0.044
             F2=(time/30)*0.355
             ans=F1+F2
-    return render(requests,'calculators/water.html')
+    waterJSON=dumps({
+        'water':ans
+    },default=str)
+    context={'water_result':waterJSON,'water':ans}
+    return render(requests,'calculators/water.html',context)
 
 def WHR(requests):
     whr_form=WHRform()
