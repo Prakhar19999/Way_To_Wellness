@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from json import dumps
 from way_to_wellness.forms import *
 
 def calculators(requests):
@@ -21,7 +22,11 @@ def BMI(requests):
             numerator=float(requests.POST.get('weight'))
             denominator=float(requests.POST.get('height'))*float(requests.POST.get('height'))
             bmi=numerator/denominator
-    return render(requests,'calculators/BMI.html')
+    bmiJSON=dumps({
+        'bmi':bmi
+    },default=str)
+    context={'bmi_result':bmiJSON,'bmi':bmi}
+    return render(requests,'calculators/BMI.html',context)
 
 def Water(requests):
     water_form=WaterForm()

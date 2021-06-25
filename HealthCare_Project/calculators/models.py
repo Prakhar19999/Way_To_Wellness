@@ -17,7 +17,7 @@ class BMI(models.Model):
     height=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Body Mass Index"
