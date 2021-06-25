@@ -74,7 +74,7 @@ class BF(models.Model):
     forearm=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Body Fat"

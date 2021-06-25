@@ -117,17 +117,15 @@ def CalMacroNutri(requests):
 
 def BF(requests):
     bf_form=BFform()
-    male=0
-    female=0
-    bf=0
+    body_fat_weight=0
+    body_fat_percentage=0
     if requests.method=='POST':
         bf_form=BFform(requests.POST)
         if bf_form.is_valid():
             bf_form.save()
             gender=requests.POST.get('gender')
             weight=float(requests.POST.get('weight'))
-            if gender=="Male":
-                male=1
+            if gender=="Female":
                 f1=float(requests.POST.get('weight'))*0.732+8.987
                 f2=float(requests.POST.get('wrist'))/3.140
                 f3=float(requests.POST.get('waist'))*0.157
@@ -136,13 +134,15 @@ def BF(requests):
                 lean_body_mass=f1+f2+f5-f2-f3
                 body_fat_weight=weight-lean_body_mass
                 body_fat_percentage=(body_fat_weight*100)/weight
-            elif gender=="Female":
-                female=1
+            elif gender=="Male":
                 f1=float(requests.POST.get('weight'))*1.082+94.42
                 f2=float(requests.POST.get('waist'))*4.15
                 lean_body_mass=f1-f2
                 body_fat_weight=weight-lean_body_mass
                 body_fat_percentage=(body_fat_weight*100)/weight
-            else:
-                print("Select gender")
-    return render(requests,'calculators/BF.html')
+    bfJSON=dumps({
+        'bfw':body_fat_weight,
+        'bfp':body_fat_percentage,
+    },default=str)
+    context={'bf_result':bfJSON,'bfw':body_fat_weight,'bfp':body_fat_percentage}
+    return render(requests,'calculators/BF.html',context)
