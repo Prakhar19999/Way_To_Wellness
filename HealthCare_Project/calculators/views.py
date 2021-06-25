@@ -64,8 +64,7 @@ def WHR(requests):
 
 def BMR(requests):
     bmr_form=BMRform()
-    bmr_men=0
-    bmr_women=0
+    bmr=0
     if requests.method=='POST':
         bmr_form=BMRform(requests.POST)
         if bmr_form.is_valid():
@@ -75,10 +74,14 @@ def BMR(requests):
             age=float(requests.POST.get('age'))
             gender=requests.POST.get('gender')
             if gender=="Male":
-                bmr_men=655+(9.6*weight)+(1.8*height)-(4.7*age)
+                bmr=655+(9.6*weight)+(1.8*height)-(4.7*age)
             else:
-                bmr_women=66+(13.7*weight)+(5*height)-(6.8*age)
-    return render(requests,'calculators/BMR.html')
+                bmr=66+(13.7*weight)+(5*height)-(6.8*age)
+    bmrJSON=dumps({
+        'bmr':bmr
+    },default=str)
+    context={'bmr_result':bmrJSON,'bmr':bmr}
+    return render(requests,'calculators/BMR.html',context)
 
 def CalMacroNutri(requests):
     nutri_form=NutriForm()

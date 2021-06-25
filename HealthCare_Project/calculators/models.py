@@ -49,7 +49,7 @@ class BMR(models.Model):
     gender=models.BooleanField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Basal Metabolic Rate"
