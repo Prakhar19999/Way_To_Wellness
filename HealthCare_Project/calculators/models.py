@@ -49,7 +49,7 @@ class BMR(models.Model):
     gender=models.BooleanField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Basal Metabolic Rate"
@@ -62,7 +62,7 @@ class CalMacroNutri(models.Model):
     lifestyle=models.TextField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Calorie and Macro Nutritients"
@@ -74,7 +74,7 @@ class BF(models.Model):
     forearm=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Body Fat"

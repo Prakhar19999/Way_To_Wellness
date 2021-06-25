@@ -1,32 +1,101 @@
-{% load static %}
-<link href="{% static 'css/BF_form.css' %}" rel="stylesheet">
+{%extends 'calculators/base_event.html' %}
+{%load static%}
+{% block content %}
 
+<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 
-<div class="card-form">
-    <form class="signup" method="POST" action="">
-        {%csrf_token%}
-      <div class="form-title">Sign Up for our Newsletter!</div>
-      <div class="form-body">
-        <div class="row">
-          <input type="number" id="weight" name="weight" placeholder="Weight" step=0.01>
-          <input type="number" id="waist" name="waist" placeholder="Waist Measurement" step=0.01>
-          <input type="number" id="wrist" name="wrist" placeholder="Wrist Measurement" step=0.01>
-          <input type="number" id="hip" name="hip" placeholder="Hip Measurement" step=0.01>
-          <input type="number" id="forearm" name="forearm" placeholder="Forearm Measurement" step=0.01>
+  <div class="container" style="padding-top: 115px;">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="jumbotron text-center">Basal Metabolic Rate Calculator</h3> 
+         
+        <form role="form" method="POST" action=""> 
+          {% csrf_token%}
+          <div id="metric" ng-show="units == 'metric'">
+            <div class="form-group">
+              <label for="weight">Weight (kg):</label>
+              <input type="number" id="weight" name="weight" placeholder="Weight in kg" class="form-control" step="0.01">    
+            </div>
+            
+            <div class="form-group">
+              <label for="waist">Waist (cm):</label>
+              <input type="number" id="waist" name="waist" placeholder="Waist measurement at naval point" class="form-control" step="0.01">
+            </div>
 
-          <label for="male" style="color: black;">Male</label>
-          <input name="gender" id="male" type="radio" value="Male">
+            <div class="form-group">
+              <label for="wrist">Wrist (cm):</label>
+              <input type="number" id="wrist" name="wrist" placeholder="Wrist measurement at fullest point" class="form-control">
+            </div>
 
-          <label for="femail" style="color: black;">Female</label>
-          <input name="gender" id="female" type="radio" value="Female">
+            <div class="form-group">
+              <label for="hip">Hip (cm):</label>
+              <input type="number" id="hip" name="hip" placeholder="Hip measurement at fullest point" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="forearm">Forearm (cm):</label>
+              <input type="number" id="forearm" name="forearm" placeholder="Forearm measurement at fullest point" class="form-control">
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" id="Male" value="Male">
+              <label class="form-check-label" for="Male">Male</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" id="Female" value="Female">
+              <label class="form-check-label" for="Female">Female</label>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <button type="submit" class="btn btn-primary">Calculate</button>
+
+          </div>
+        </form>
+        
+        <br>
+        <br>
+        {%if bfw %}
+        <!-- Calculated BMI is shown here -->
+        <div class="well text-center">
+          <h3 class="text-muted">Calculated Body Fat</h3>
         </div>
-        <!--<div class="row">
-          <input type="email" id="email" name="email" placeholder="Email Address*">
-        </div>-->
+        <p id="BFW_result"></p>
+        {%endif%}
+        <br>
+        <br>
+        {%if bfp %}
+        <div class="well text-center">
+          <h3 class="text-muted">Calculated Body Fat Percentage</h3>
+        </div>
+        <p id="BFP_result"></p>
+        {%endif%}
+
       </div>
-      <div class="rule"></div>
-      <div class="form-footer">
-        <button type="submit" class="btn btn-success text-center">Book Appointment<i class="fa fa-paper-plane-o ml-1"></i></button>
-      </div>
-    </form>
+    </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <script>
+    var bf_result=JSON.parse("{{bf_result|escapejs}}")
+    var bfw=bf_result.bfw
+    var bfp=bf_result.bfp
+    if(bfw)
+    {
+      var showBFW=document.getElementById('BFW_result')
+      showBFW.innerHTML="Your body fat weight is "+ bfw
+    }
+    if(bfp)
+    {
+      var showBFP=document.getElementById('BFP_result')
+      showBFP.innerHTML="Your body fat percentage is "+ bfp+" %"
+    }
+  </script>
+{% endblock %}
