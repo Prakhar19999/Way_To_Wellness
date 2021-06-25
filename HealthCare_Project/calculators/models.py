@@ -17,7 +17,7 @@ class BMI(models.Model):
     height=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Body Mass Index"
@@ -27,7 +27,7 @@ class Water(models.Model):
     exercise_time=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Water"
@@ -37,7 +37,7 @@ class WHR(models.Model):
     hip=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Waist To Hip Ratio"

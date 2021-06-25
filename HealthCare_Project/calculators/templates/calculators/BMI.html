@@ -1,23 +1,60 @@
-{% load static %}
-<link href="{% static 'css/BMI_form.css' %}" rel="stylesheet">
+{%extends 'calculators/base_event.html' %}
+{%load static%}
+{% block content %}
+<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 
+  <div class="container" style="padding-top: 115px;">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="jumbotron text-center">BMI Calculator</h3> 
+         
+        <form role="form" method="POST" action=""> 
+          {% csrf_token%}
+          <div id="metric" ng-show="units == 'metric'">
+            <div class="form-group">
+              <label for="weight_kg">Weight (kg):</label>
+              <input type="number" id="weight" name="weight" placeholder="weight in kg" class="form-control" step="0.01">    
+            </div>
+            
+            <div class="form-group">
+              <label for="height_cm">Height (m):</label>
+              <input type="number" id="height" name="height" placeholder="height in meters" class="form-control" step="0.01">    
+            </div>
 
-<div class="card-form">
-    <form class="signup" method="POST" action="">
-        {%csrf_token%}
-      <div class="form-title">Sign Up for our Newsletter!</div>
-      <div class="form-body">
-        <div class="row">
-          <input type="number" id="weight" name="weight" placeholder="Weight" step=0.01>
-          <input type="number" id="height" name="height" placeholder="Height" step=0.01>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+
+          </div>
+        </form>
+        
+        <br>
+        <br>
+        {%if bmi %}
+        <!-- Calculated BMI is shown here -->
+        <div class="well text-center">
+          <h3 class="text-muted">Calculated BMI</h3>
         </div>
-        <!--<div class="row">
-          <input type="email" id="email" name="email" placeholder="Email Address*">
-        </div>-->
+        <p id="BMI_result"></p>
+        {%endif%}
       </div>
-      <div class="rule"></div>
-      <div class="form-footer">
-        <button type="submit" class="btn btn-success text-center">Book Appointment<i class="fa fa-paper-plane-o ml-1"></i></button>
-      </div>
-    </form>
+    </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <!-- Scripts -->
+  <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script data-require="angular.js@1.2.13" data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js"></script>
+
+  <script>
+    var bmi_result=JSON.parse("{{bmi_result|escapejs}}")
+    bmi=bmi_result.bmi
+    if(bmi)
+    {
+      var showResult=document.getElementById('BMI_result')
+      showResult.innerHTML="Your calculated bmi is "+bmi
+    }
+  </script>
+{% endblock %}

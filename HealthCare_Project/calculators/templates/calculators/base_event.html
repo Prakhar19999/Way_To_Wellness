@@ -97,7 +97,7 @@ aria-hidden="true">
 
     <div class="modal-body mx-3">
 
-      <form method="POST">
+      <form method="POST" action="{% url 'home_page' %}">
         {%csrf_token%}
         {{ap_form|crispy}}
         <!--<div class="input-group mb-4">

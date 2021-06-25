@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from json import dumps
 from way_to_wellness.forms import *
 
 def calculators(requests):
@@ -21,7 +22,11 @@ def BMI(requests):
             numerator=float(requests.POST.get('weight'))
             denominator=float(requests.POST.get('height'))*float(requests.POST.get('height'))
             bmi=numerator/denominator
-    return render(requests,'calculators/BMI.html')
+    bmiJSON=dumps({
+        'bmi':bmi
+    },default=str)
+    context={'bmi_result':bmiJSON,'bmi':bmi}
+    return render(requests,'calculators/BMI.html',context)
 
 def Water(requests):
     water_form=WaterForm()
@@ -35,7 +40,11 @@ def Water(requests):
             F1=weight*0.044
             F2=(time/30)*0.355
             ans=F1+F2
-    return render(requests,'calculators/water.html')
+    waterJSON=dumps({
+        'water':ans
+    },default=str)
+    context={'water_result':waterJSON,'water':ans}
+    return render(requests,'calculators/water.html',context)
 
 def WHR(requests):
     whr_form=WHRform()
@@ -47,7 +56,11 @@ def WHR(requests):
             num=float(requests.POST.get('waist'))
             den=float(requests.POST.get('hip'))
             whr=num/den
-    return render(requests,'calculators/WHR.html')
+    whrJSON=dumps({
+        'whr':whr
+    })
+    context={'whr_result':whrJSON,'whr':whr}
+    return render(requests,'calculators/WHR.html',context)
 
 def BMR(requests):
     bmr_form=BMRform()
