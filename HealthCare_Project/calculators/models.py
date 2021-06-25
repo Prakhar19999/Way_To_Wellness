@@ -37,7 +37,7 @@ class WHR(models.Model):
     hip=models.FloatField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
     
     class Meta:
         verbose_name_plural="Waist To Hip Ratio"

@@ -56,7 +56,11 @@ def WHR(requests):
             num=float(requests.POST.get('waist'))
             den=float(requests.POST.get('hip'))
             whr=num/den
-    return render(requests,'calculators/WHR.html')
+    whrJSON=dumps({
+        'whr':whr
+    })
+    context={'whr_result':whrJSON,'whr':whr}
+    return render(requests,'calculators/WHR.html',context)
 
 def BMR(requests):
     bmr_form=BMRform()
