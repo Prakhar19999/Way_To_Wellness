@@ -36,12 +36,24 @@
   <link href="{% static 'css/social_media.css' %}" rel="stylesheet">
   <link href="{% static 'css/appointment_button.css' %}" rel="stylesheet">
   <link href="{% static 'css/modal_form.css' %}" rel="stylesheet">
+  <link href="{% static 'loader/loader.css' %}" rel="stylesheet">
 
 
 
 </head>
 
-<body>
+<body onload="loaderfunction()">
+
+   <!--Loader-->
+   <div id="loader">
+    <div id="loading">
+   <div class="loading-screen">
+    <div class="loading-animation">
+      <img src="{% static 'img/waytowellness-logo.jpeg' %}" alt="" class="loader_logo">
+      <div class="loading-bar"></div>
+    </div>
+  </div></div></div>
+  <!--Loader Ends-->
 
   <section id="about">
     <header id="header" class="fixed-top">
@@ -271,6 +283,7 @@ aria-hidden="true">
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main1.js' %}"></script>
+  <script src="{% static 'loader/loader.js' %}"></script>
 
 </body>
 
