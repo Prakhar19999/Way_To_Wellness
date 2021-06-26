@@ -2,47 +2,75 @@
 {% load static %}
 {%block content%}
 
+<link href="{% static 'css/calculator.css' %}" rel="stylesheet">
+
+
 <div id="event-type-all" style="padding-top: 150px;">
     <header class="section-header">
-        <h3 style="z-index: 10;" id="ae">Calculators</h3>
+        <h3 style="z-index: 10;" id="ae">Calculate Your Fitness</h3>
     </header>
     <div class="container">
-        <div class="row">
+        <section class="services-area section-padding">
+            <div class="container">
 
-            {% if count %}
-                {% for calculator in calculator %}
-                <div class="col-md-4">
-                    <section
-                        class="portfolio-details animate__animated animate__fadeInUp shadow-lg p-3 mb-5 bg-white rounded">
-                        <div class="container">
-
-                            <div class="portfolio-details-container">
-                                <div class="portfolio-details-carousel">
-                                    <img src="{{calculator.image.url}}" class="img-fluid" style="width: 300px; height: 200px; "
-                                        alt="Image">
-                                </div>
-                            </div>
-
-                            <div class="portfolio-description">
-                                <h2 style="font-size: 22px;">{{calculator.title}}</h2>
-                                <p class="pop">
-                                    {{calculator.paragraph}}
-                                </p>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="single-serviecs-block">
+                            <i class="fa fa-print"></i>
+                            <h3><a href="{% url 'BMI' %}">Body Mass Index</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
-                        <div class="text-center">
-                            <a href="/calculators/{{calculator.url_name}}" target="blank"
-                                class="btn btn-primary stretched-link">Calculate {{calculator.title}}
-                            </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="single-serviecs-block">
+                            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                            <h3><a href="{% url 'BMR' %}">Basal Metabolic Rate</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
-                    </section>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="single-serviecs-block">
+                            <i class="fa fa-envelope"></i>
+                            <h3><a href="{% url 'nutri' %}">Calorie & Macro Nutrients</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
                 </div>
-                {% endfor %}
-            {%endif%}
-            
 
-        </div>
-    </div>
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="single-serviecs-block">
+                            <i class="fa fa-print"></i>
+                            <h3><a href="{% url 'Water' %}">Water</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="single-serviecs-block">
+                            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                            <h3><a href="{% url 'WHR' %}">Waist to Hip Ratio</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="single-serviecs-block">
+                            <i class="fa fa-envelope"></i>
+                            <h3><a href="{% url 'BF' %}">Body Fat</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!--/Services Area-->
 </div>
 
 </div>
