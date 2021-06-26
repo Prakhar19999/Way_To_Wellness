@@ -184,8 +184,6 @@
   position: fixed;
   margin: 1em;
   right: 0;
-  margin-right: 96%;
-  margin-bottom: 12%;
   z-index: 100;
 }
 
@@ -246,10 +244,4 @@
 [tooltip]:hover:after {
   visibility: visible;
   opacity: 1;
-}
-@media screen and (max-width:1500px) {
-  .fabs{
-    margin-right: 80.5%;
-    margin-bottom: 205px;
-  }
 }

@@ -293,6 +293,8 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
   right: 15px;
   bottom: 15px;
   transition: background 0.5s;
+  margin-bottom: 65px;
+  margin-right: 10px;
   z-index: 11;
 }
 
@@ -303,7 +305,8 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 @media (max-width: 768px) {
   .back-to-top {
-    bottom: 15px;
+    margin-bottom: 65px;
+    margin-right: 9px;
   }
 }
 

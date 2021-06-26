@@ -11,9 +11,11 @@ def home(requests):
    form=AppointmentForm()
    if requests.method == "POST":
       form=AppointmentForm(requests.POST)
+      print(requests.POST)
+      print(form.is_valid())
       if form.is_valid():
          form.save()
-         send_mail=requests.POST.get('email')
+         """send_mail=requests.POST.get('email')
          html_content=render_to_string("way_to_wellness/email.html",{"title":'Test Email','content':'Hello'})
          text_content=strip_tags(html_content)
          email=EmailMultiAlternatives(
@@ -27,7 +29,7 @@ def home(requests):
             [send_mail,settings.EMAIL_HOST_USER],
          )
          email.attach_alternative(html_content,"text/html")
-         email.send()
+         email.send()"""
    form=AppointmentForm()
    testimonials=Testimonials.objects.all()
    carousel=Carousel.objects.all().first()
