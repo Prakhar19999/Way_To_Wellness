@@ -56,11 +56,12 @@ class Appointment(models.Model):
     email=models.EmailField()
     mobile_no=models.CharField(max_length=15)
     weight=models.FloatField()
-    height=models.FloatField()
+    height_ft=models.FloatField()
+    height_inches=models.FloatField()
     age=models.IntegerField()
     date=models.DateField()
     time=models.TimeField()
     msg=models.TextField(blank=True)
 
     def __str__(self):
-        return self.name+'('+str(self.id)+')'
+        return self.name
