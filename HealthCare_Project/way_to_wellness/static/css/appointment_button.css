@@ -1,7 +1,7 @@
 .float button{
-    position:fixed;
+  position:fixed;
   top: 100px;
-  margin-left: 46%;
+  margin-left: 44%;
   background-color: aquamarine;
   z-index:100;
   color: white;
@@ -13,7 +13,7 @@
 }
 @media screen and (max-width:750px) {
 .float button{
-  margin-left:35%;
+  margin-left:30%;
 }
 }
 @media screen and (max-width:640px) {

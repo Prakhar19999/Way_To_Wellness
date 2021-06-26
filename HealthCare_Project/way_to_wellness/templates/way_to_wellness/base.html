@@ -69,7 +69,7 @@
 <!--Appointment Button-->
 <a class="float">
   <button type="button" class="btn btn-unique" data-toggle="modal" data-target="#modalContactForm">
-    <strong>APPOINTMENT</strong>
+    <strong>Book an Appointment</strong>
   </button>
 </a>
 <!--Appointment Button Ends-->
@@ -81,48 +81,46 @@ aria-hidden="true">
   <div class="modal-content">
     
     <div class="modal-header text-center">
-      <h4 class="modal-title w-100 font-weight-bold">Make an Appointment</h4>
+      <h4 class="modal-title w-100 font-weight-bold">Book an Appointment</h4>
     </div>
 
     <div class="modal-body mx-3">
 
-      <form method="POST">
+      <form method="POST" action="{% url 'home_page' %}">
         {%csrf_token%}
-        {{ap_form|crispy}}
-        <!--<div class="input-group mb-4">
+        <div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="fa fa-user prefix grey-text"></i></span>
           </div>
-          <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" placeholder="Name" id="name" name="name">
         </div>
 
         <div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope prefix grey-text"></i></span>
           </div>
-          <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+          <input type="email" class="form-control" placeholder="Email" id="email" name="email">
         </div>
 
         <div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone prefix grey-text"></i></span>
           </div>
-          <input type="phone" class="form-control" placeholder="Contact Number" aria-label="Phone" aria-describedby="basic-addon1">
+          <input type="phone" class="form-control" placeholder="Contact Number" id="mobile_no" name="mobile_no">
         </div>
 
         <div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"> <i class="fa fa-balance-scale prefix grey-text"></i></span>
           </div>
-          <input type="number" class="form-control" placeholder="Weight in KGs" aria-label="Weight" aria-describedby="basic-addon1" step="0.01">
+          <input type="number" class="form-control" placeholder="Weight in KGs" id="weight" name="weight" step="0.01">
         </div>
 
         <div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="fa fa-pencil prefix grey-text"></i></span>
           </div>
-          <input type="number" class="form-control" placeholder="Your Height in ft & inch" aria-label="Height" aria-describedby="basic-addon1" 
-          step="0.001">
+          <input type="number" class="form-control" placeholder="Your Height in ft & inch" id="height" name="height" step="0.001">
         </div>
 
         <div class="input-group mb-5">
@@ -132,25 +130,25 @@ aria-hidden="true">
               <i class="fa fa-male" aria-hidden="true"></i>
             </span>
           </div>
-          <input type="number" class="form-control" placeholder="Your Age" aria-label="Age" aria-describedby="basic-addon1">
+          <input type="number" class="form-control" placeholder="Your Age" id="age" name="age">
         </div>
 
         <div class="md-form mb-4">
           <label data-error="wrong" data-success="right" for="date">Preferred Appointment Date</label>
-          <input type="date" id="date" class="form-control validate">
+          <input type="date" id="date" name="date" class="form-control validate">
         </div>
 
         <div class="md-form mb-5">
           <label data-error="wrong" data-success="right" for="time">Preferred Appointment Time</label>
-          <input type="time" id="time" class="form-control validate">
+          <input type="time" id="time" name="time" class="form-control validate">
         </div>
 
         <div class="input-group mb-5">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"> <i class="fa fa-envelope prefix grey-text"></i></span>
           </div>
-          <textarea type="text" class="form-control" placeholder="Your Message" aria-label="Message" aria-describedby="basic-addon1"></textarea>
-        </div>-->
+          <textarea type="text" class="form-control" placeholder="Your Message" id="msg" name="msg"></textarea>
+        </div>
         
         <button type="submit" class="btn btn-success text-center">Book Appointment <i class="fa fa-paper-plane-o ml-1"></i></button>
 
@@ -166,6 +164,14 @@ aria-hidden="true">
 
   {% block content %}{% endblock %}
 
+   <!-- Share Buttons -->
+  
+  <div class="fabs">
+    <a href="https://wa.me/+918010373183?text=Hi%20prakhar%2C%20I%20am%20vinit" target="_blank" class="fab orange" tooltip="Codepen"><i class="fa fa-whatsapp"></i></a>
+  </div>
+  
+  <!-- /Share Buttons -->
+
 
     <!--Left Bottom Social Media-->
       <div id="circularMenu1" class="circular-menu circular-menu-left" style="z-index: 100;">
@@ -173,10 +179,10 @@ aria-hidden="true">
           <i class="fa fa-users"></i>
         </a>
         <menu class="items-wrapper">
-          <a href="#" class="menu-item fa fa-facebook"></a>
-          <a href="#" class="menu-item fa fa-twitter"></a>
-          <a href="#" class="menu-item fa fa-linkedin"></a>
-          <a href="https://wa.me/+918010373183?text=Hi%20prakhar%2C%20I%20am%20vinit" class="menu-item fa fa-whatsapp"></a>
+          <a target="_blank" href="https://www.facebook.com/waytowellness.in" class="menu-item fa fa-facebook" style="background-color:#4267B2;"></a>
+          <a target="_blank" href="#" class="menu-item fa fa-telegram" style="background-color:  #0088cc;"></a>
+          <a target="_blank" href="#" class="menu-item fa fa-instagram" style="background-color: #E1306C"></a>
+          <a target="_blank" href="https://www.youtube.com/channel/UC-IMZIg4XPaBV9elU2eYdMQ" class="menu-item fa fa-youtube" style="background-color: #FF0000;"></a>
         </menu>
       </div>
     <!--Left Bottom Social Media Ends-->
@@ -190,25 +196,24 @@ aria-hidden="true">
         </div>
 
         <div class="col-lg-3 footer-info">
-          <h3>Organization Name</h3>
-          <p style="border-left: 4px solid #7FFFD4; text-align:center;">Place</p>            
+          <h3>Way To Wellness</h3>
           <br>
-          <!--<p style="text-align:center;">© 2021 EDC. All Rights Reserved.</p>-->
+          <p style="text-align:left;">© 2021 Way To Wellness.
+            <br>All Rights Reserved.</p>
         </div>
 
         <div class="col-lg-1"></div>  
         <div class="col-md-3 footer-contact">
           <h4>Contact Us</h4>
           <p>
-            <i class="fa fa-map-marker"> :</i> location,<br>
-             <br>
-            <i class="fa fa-phone "></i> : Contact Number<br>
-            <i class="fa fa-envelope-o"> :</i><a href="mailto:edcnitd.official@gmail.com"> email address</a><br>
+            <i class="fa fa-map-marker"> :</i>India<br>
+            <i class="fa fa-phone "></i> : +91 93150 28407<br>
+            <i class="fa fa-envelope-o"> :</i><a href="mailto:amitpathry@waytowellness.in" style="color:#7FFFD4 ;">amitpathry@waytowellness.in</a><br>
           </p>
   
           <div class="social-links">
-            <a target="_blank" href="https://twitter.com/edcnitd" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a target="_blank" href="https://www.facebook.com/edc.nitd" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a target="_blank" href="https://twitter.com/edcnitd" class="twitter"><i class="fa fa-instagram"></i></a>
+            <a target="_blank" href="Facebook.com/waytowellness.in" class="facebook"><i class="fa fa-facebook"></i></a>
             <a target="_blank" href="https://www.instagram.com/edc.nitd" class="instagram"><i class="fa fa-instagram"></i></a>
             <a target="_blank" href="https://www.youtube.com/channel/UCaBiTXfp5gknGPS6N3asDBg" class="google-plus"><i class="fa fa-youtube"></i></a>
             <a target="_blank" href="https://www.linkedin.com/company/edcnitd/" class="linkedin"><i class="fa fa-linkedin"></i></a>
@@ -220,10 +225,8 @@ aria-hidden="true">
         <div class="col-lg-2 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="ion-ios-arrow-right"></i> <a href="#">link 1</a></l>
-            <li><i class="ion-ios-arrow-right"></i> <a href="#">link 2</a></li>
-            <li><i class="ion-ios-arrow-right"></i> <a href="#">link 3</a></li>
-            <li><i class="ion-ios-arrow-right"></i> <a href="#">link 4</a></li>
+            <li><i class="ion-ios-arrow-right"></i> <a href="{% url 'home_page' %}">Home</a></l>
+            <li><i class="ion-ios-arrow-right"></i> <a href="{% url 'calculators' %}">Calculators</a></li>
           </ul>
         </div>
   
