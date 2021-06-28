@@ -82,6 +82,9 @@ def CalMacroNutri(requests):
     nutri_form=NutriForm()
     bmr=0
     calorie=0
+    protein=0
+    carbohydrates=0
+    fats=0
     if requests.method=='POST':
         nutri_form=NutriForm(requests.POST)
         if nutri_form.is_valid():
@@ -107,9 +110,16 @@ def CalMacroNutri(requests):
                 calorie=bmr*1.725
             elif lifestyle=="Extra Active":
                 calorie=bmr*1.9
+            
+            protein=calorie*0.4
+            carbohydrates=calorie*0.3
+            fats=calorie*0.3
                 
     nutriJSON=dumps({
         'calorie':calorie,
+        'protein':protein,
+        'carbohydrates':carbohydrates,
+        'fats':fats
     },default=str)
     context={'nutri_result':nutriJSON,'calorie':calorie}
     return render(requests,'calculators/nutri.html',context)
