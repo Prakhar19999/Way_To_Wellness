@@ -1,16 +1,12 @@
 from django.db import models
 
-class Calculator(models.Model):
-    title=models.CharField(max_length=50)
-    paragraph=models.TextField()
-    image=models.ImageField(upload_to='calculators')
-    url_name=models.CharField(max_length=50)
+class UserDetail(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
 
     def __str__(self):
-        return self.title
-    
-    class Meta:
-        verbose_name_plural="Calculators"
+        return self.name
 
 class BMI(models.Model):
     weight=models.FloatField()

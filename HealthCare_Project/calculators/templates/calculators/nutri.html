@@ -1,4 +1,5 @@
 {%extends 'calculators/base_event.html' %}
+{% load crispy_forms_tags %}
 {%load static%}
 {% block content %}
 
@@ -9,6 +10,9 @@
          
         <form role="form" method="POST" action=""> 
           {% csrf_token%}
+
+          {{userdetailform|crispy}}
+
           <div id="metric" ng-show="units == 'metric'">
             <div class="form-group">
               <label for="weight">Weight (kg):</label>
@@ -70,30 +74,34 @@
 
             <button type="submit" class="btn btn-primary">Calculate</button>
 
+            <br>
+            <br>
+            
+            {%if calorie %}
+            <!-- Calculated BMI is shown here -->
+            <div class="jumbotron text-center">
+              <h3 class="text-muted">Calculated Calorie Required</h3>
+            </div>
+            <p class="breadcrumb" id="Nutri_result"></p><br>
+            <div class="jumbotron">
+              <h5 class="text-center">You can get the required calorie from the following Nutrition proportions:</h5><br>
+              <p><strong><span id="Protein_result"></span></strong> grams of proteins</p>
+              <p><strong><span id="Carbohydrates_result"></span></strong> grams of carbohydrates</p>
+              <p><strong><span id="Fats_result"></span></strong> grams of fats</p>
+            </div>
+            <div class="breadcrumb text-center">
+              <h3 class="text-muted"><i class="fa fa-asterisk" aria-hidden="true"></i>NOTE</h3>
+              <p><span>You should intake the above mentioned calories to maintain your body weight. <strong>Reduce 500 calories</strong> if you want to lose weight and <strong>add 250-500 calories</strong> if you want to gain weight.</span></p>
+              <br>
+              <p>For more details, please call our coaches</p>
+            </div>
+    
+            <button type="submit" class="btn btn-success" name="send_email" 
+            value="Send Email">Receive info through Mail<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            {%endif%}
+
           </div>
         </form>
-        
-        <br>
-        <br>
-        {%if calorie %}
-        <!-- Calculated BMI is shown here -->
-        <div class="jumbotron text-center">
-          <h3 class="text-muted">Calculated Calorie Required</h3>
-        </div>
-        <p class="breadcrumb" id="Nutri_result"></p><br>
-        <div class="jumbotron">
-          <h5 class="text-center">You can get the required calorie from the following Nutrition proportions:</h5><br>
-          <p><strong><span id="Protein_result"></span></strong> grams of proteins</p>
-          <p><strong><span id="Carbohydrates_result"></span></strong> grams of carbohydrates</p>
-          <p><strong><span id="Fats_result"></span></strong> grams of fats</p>
-        </div>
-        <div class="breadcrumb text-center">
-          <h3 class="text-muted"><i class="fa fa-asterisk" aria-hidden="true"></i>NOTE</h3>
-          <p><span>You should intake the above mentioned calories to maintain your body weight. <strong>Reduce 500 calories</strong> if you want to lose weight and <strong>add 250-500 calories</strong> if you want to gain weight.</span></p>
-          <br>
-          <p>For more details, please call our coaches</p>
-        </div>
-        {%endif%}
 
       </div>
     </div>

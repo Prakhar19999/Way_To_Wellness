@@ -1,4 +1,5 @@
 {%extends 'calculators/base_event.html' %}
+{% load crispy_forms_tags %}
 {%load static%}
 {% block content %}
 
@@ -9,6 +10,9 @@
          
         <form role="form" method="POST" action=""> 
           {% csrf_token%}
+
+          {{userdetailform|crispy}}
+          
           <div id="metric" ng-show="units == 'metric'">
             <div class="form-group">
               <label for="weight">Weight (kg):</label>
@@ -40,18 +44,21 @@
 
             <button type="submit" class="btn btn-primary">Calculate</button>
 
+            <br>
+            <br>
+
+            {%if bmr %}
+            <!-- Calculated BMI is shown here -->
+            <div class="jumbotron text-center">
+              <h3 class="text-muted">Calculated Basal Metabolic Rate</h3>
+            </div>
+            <p class="breadcrumb" id="BMR_result"></p>
+            <button type="submit" class="btn btn-success" name="send_email" 
+                value="Send Email">Receive Info through Mail<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            {%endif%}
+
           </div>
         </form>
-        
-        <br>
-        <br>
-        {%if bmr %}
-        <!-- Calculated BMI is shown here -->
-        <div class="jumbotron text-center">
-          <h3 class="text-muted">Calculated Basal Metabolic Rate</h3>
-        </div>
-        <p class="breadcrumb" id="BMR_result"></p>
-        {%endif%}
       </div>
     </div>
   </div>
@@ -67,7 +74,7 @@
     if(bmr)
     {
       var showResult=document.getElementById('BMR_result')
-      showResult.innerHTML="Your water requirement is "+ bmr
+      showResult.innerHTML="Your Basal Metabolic Rate is "+ bmr
     }
   </script>
 {% endblock %}

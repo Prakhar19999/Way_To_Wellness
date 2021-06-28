@@ -1,4 +1,5 @@
 {%extends 'calculators/base_event.html' %}
+{% load crispy_forms_tags %}
 {%load static%}
 {% block content %}
 
@@ -9,6 +10,9 @@
          
         <form role="form" method="POST" action=""> 
           {% csrf_token%}
+
+          {{userdetailform|crispy}}
+
           <div id="metric" ng-show="units == 'metric'">
             <div class="form-group">
               <label for="weight_kg">Waist Measurement (cm):</label>
@@ -22,18 +26,20 @@
 
             <button type="submit" class="btn btn-primary">Calculate</button>
 
+            <br>
+            <br>
+            {%if whr %}
+            <!-- Calculated BMI is shown here -->
+            <div class="jumbotron text-center">
+              <h3 class="text-muted">Calculated Waist to Hip Ratio</h3>
+            </div>
+            <p class="breadcrumb" id="WHR_result"></p>
+            <button type="submit" class="btn btn-success" name="send_email" 
+                    value="Send Email">Receive info through Mail<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            {%endif%}
+
           </div>
         </form>
-        
-        <br>
-        <br>
-        {%if whr %}
-        <!-- Calculated BMI is shown here -->
-        <div class="jumbotron text-center">
-          <h3 class="text-muted">Calculated Waist to Hip Ratio</h3>
-        </div>
-        <p class="breadcrumb" id="WHR_result"></p>
-        {%endif%}
       </div>
     </div>
   </div>
@@ -53,7 +59,7 @@
     if(whr)
     {
       var showResult=document.getElementById('WHR_result')
-      showResult.innerHTML="Your water requirement is "+ whr
+      showResult.innerHTML="Your waist to hip ratio is "+ whr
     }
   </script>
 {% endblock %}
