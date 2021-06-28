@@ -1,4 +1,5 @@
 {%extends 'calculators/base_event.html' %}
+{% load crispy_forms_tags %}
 {%load static%}
 {% block content %}
 
@@ -9,6 +10,9 @@
          
         <form role="form" method="POST" action=""> 
           {% csrf_token%}
+
+          {{userdetailform|crispy}}
+
           <div id="metric" ng-show="units == 'metric'">
             <div class="form-group">
               <label for="weight">Weight (kg):</label>
@@ -50,27 +54,30 @@
             <br>
 
             <button type="submit" class="btn btn-primary">Calculate</button>
+            <br>
+            <br>
+            {% if bfw or bfp %}
+              {%if bfw %}
+              <!-- Calculated BMI is shown here -->
+              <div class="jumbotron text-center">
+                <h3 class="text-muted">Calculated Body Fat</h3>
+              </div>
+              <p class="breadcrumb" id="BFW_result"></p>
+              {%endif%}
+              <br>
+              <br>
+              {%if bfp %}
+              <div class="jumbotron text-center">
+                <h3 class="text-muted">Calculated Body Fat Percentage</h3>
+              </div>
+              <p class="breadcrumb" id="BFP_result"></p>
+              {%endif%}
+              <button type="submit" class="btn btn-success" name="send_email" 
+              value="Send Email">Receive info through Mail<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            {% endif %}
 
           </div>
         </form>
-        
-        <br>
-        <br>
-        {%if bfw %}
-        <!-- Calculated BMI is shown here -->
-        <div class="jumbotron text-center">
-          <h3 class="text-muted">Calculated Body Fat</h3>
-        </div>
-        <p id="BFW_result"></p>
-        {%endif%}
-        <br>
-        <br>
-        {%if bfp %}
-        <div class="well text-center">
-          <h3 class="text-muted">Calculated Body Fat Percentage</h3>
-        </div>
-        <p class="breadcrumb" id="BFP_result"></p>
-        {%endif%}
 
       </div>
     </div>
