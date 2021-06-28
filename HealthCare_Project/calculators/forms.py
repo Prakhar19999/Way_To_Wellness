@@ -1,6 +1,11 @@
 from django import forms
 from .models import *
 
+class UserDetailForm(forms.ModelForm):
+    class Meta:
+        model=UserDetail
+        fields=['name','email_id','mobile_no']
+
 class BMIform(forms.ModelForm):
     class Meta:
         model=BMI
