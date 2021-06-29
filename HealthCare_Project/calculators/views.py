@@ -53,7 +53,7 @@ def BodyMassIndex(requests):
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
-        html_content=render_to_string("email/BMI_email.html",
+        html_content=render_to_string("email/result_email.html",
                                             {'name':requests.session['name'],
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
@@ -121,7 +121,7 @@ def WaterCalculator(requests):
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
-        html_content=render_to_string("email/BMI_email.html",
+        html_content=render_to_string("email/result_email.html",
                                             {'name':requests.session['name'],
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
@@ -187,7 +187,7 @@ def WaistToHip(requests):
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
-        html_content=render_to_string("email/BMI_email.html",
+        html_content=render_to_string("email/result_email.html",
                                             {'name':requests.session['name'],
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
@@ -260,7 +260,7 @@ def BasalMetabolicRate(requests):
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
-        html_content=render_to_string("email/BMI_email.html",
+        html_content=render_to_string("email/result_email.html",
                                             {'name':requests.session['name'],
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
@@ -354,7 +354,7 @@ def Calorie(requests):
     
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
-        html_content=render_to_string("email/BMI_email.html",
+        html_content=render_to_string("email/result_email.html",
                                             {'name':requests.session['name'],
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
@@ -446,7 +446,7 @@ def BodyFat(requests):
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
-        html_content=render_to_string("email/BMI_email.html",
+        html_content=render_to_string("email/result_email.html",
                                             {'name':requests.session['name'],
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
