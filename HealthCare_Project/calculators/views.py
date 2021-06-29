@@ -3,6 +3,11 @@ from .models import *
 from .forms import *
 from json import dumps
 from way_to_wellness.forms import *
+from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 def calculators(requests):
     return render(requests,'calculators/calculator_base.html')
@@ -44,10 +49,29 @@ def BodyMassIndex(requests):
                                     weight=weight,
                                     height=height)
             user_bmi.save()
+            requests.session['bmi']=bmi
+
     if requests.POST.get('send_email'):
-        print("BMI-Mail sending")
-    """Sending Mail"""
-    """Sending Mail Ends"""
+        send_mail=requests.session['email_id']
+        html_content=render_to_string("email/BMI_email.html",
+                                            {'name':requests.session['name'],
+                                            'email_id':requests.session['email_id'],
+                                            'mobile_no':requests.session['mobile_no'],
+                                            'value':requests.session['bmi'],
+                                            'content':'Your calculated Body Mass Index'})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            #subject
+            'Way To Wellness',
+            #content
+            'text_content',
+            #from email
+            settings.EMAIL_HOST_USER,
+            #to email
+            [send_mail,settings.EMAIL_HOST_USER],
+         )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
 
     bmiJSON=dumps({
         'bmi':bmi
@@ -93,11 +117,29 @@ def WaterCalculator(requests):
                                     weight=weight,
                                     exercise_time=time)
             user_water.save()
+            requests.session['water']=ans
 
-    """Sending Mail"""
     if requests.POST.get('send_email'):
-        print("Water-Email needs to be sent")
-    """Sending Mail Ends"""
+        send_mail=requests.session['email_id']
+        html_content=render_to_string("email/BMI_email.html",
+                                            {'name':requests.session['name'],
+                                            'email_id':requests.session['email_id'],
+                                            'mobile_no':requests.session['mobile_no'],
+                                            'value':requests.session['water'],
+                                            'content':'Your calculated Water requirement'})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            #subject
+            'Way To Wellness',
+            #content
+            'text_content',
+            #from email
+            settings.EMAIL_HOST_USER,
+            #to email
+            [send_mail,settings.EMAIL_HOST_USER],
+         )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
 
     waterJSON=dumps({
         'water':ans
@@ -140,12 +182,30 @@ def WaistToHip(requests):
                                     waist=num,
                                     hip=den)
             user_whr.save()
+            requests.session['whr']=whr
 
 
-    """Sending Mail"""
     if requests.POST.get('send_email'):
-        print("Waist to Hip Ratio-Email needs to be sent")
-    """Sending Mail Ends"""
+        send_mail=requests.session['email_id']
+        html_content=render_to_string("email/BMI_email.html",
+                                            {'name':requests.session['name'],
+                                            'email_id':requests.session['email_id'],
+                                            'mobile_no':requests.session['mobile_no'],
+                                            'value':requests.session['whr'],
+                                            'content':'Your calculated Waist To Hip Ratio'})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            #subject
+            'Way To Wellness',
+            #content
+            'text_content',
+            #from email
+            settings.EMAIL_HOST_USER,
+            #to email
+            [send_mail,settings.EMAIL_HOST_USER],
+         )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
 
     whrJSON=dumps({
         'whr':whr
@@ -196,11 +256,29 @@ def BasalMetabolicRate(requests):
                                     age=age,
                                     gender=gender)
             user_bmr.save()
+            requests.session['bmr']=bmr
 
-    """Sending Mail"""
     if requests.POST.get('send_email'):
-        print("Basal Metabolic Rate-Email needs to be sent")
-    """Sending Mail Ends"""
+        send_mail=requests.session['email_id']
+        html_content=render_to_string("email/BMI_email.html",
+                                            {'name':requests.session['name'],
+                                            'email_id':requests.session['email_id'],
+                                            'mobile_no':requests.session['mobile_no'],
+                                            'value':requests.session['bmr'],
+                                            'content':'Your calculated Basal Metabolic Rate'})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            #subject
+            'Way To Wellness',
+            #content
+            'text_content',
+            #from email
+            settings.EMAIL_HOST_USER,
+            #to email
+            [send_mail,settings.EMAIL_HOST_USER],
+         )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
 
     bmrJSON=dumps({
         'bmr':bmr
@@ -272,11 +350,29 @@ def Calorie(requests):
                                     gender=gender,
                                     lifestyle=lifestyle)
             user_calorie.save()
+            requests.session['calorie']=calorie
     
-    """Sending Mail"""
     if requests.POST.get('send_email'):
-        print("Calorie and Nutrients-Email needs to be sent")
-    """Sending Mail Ends"""
+        send_mail=requests.session['email_id']
+        html_content=render_to_string("email/BMI_email.html",
+                                            {'name':requests.session['name'],
+                                            'email_id':requests.session['email_id'],
+                                            'mobile_no':requests.session['mobile_no'],
+                                            'value':requests.session['calorie'],
+                                            'content':'Your calculated Calorie requirement'})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            #subject
+            'Way To Wellness',
+            #content
+            'text_content',
+            #from email
+            settings.EMAIL_HOST_USER,
+            #to email
+            [send_mail,settings.EMAIL_HOST_USER],
+         )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
                 
     nutriJSON=dumps({
         'calorie':calorie,
@@ -346,11 +442,29 @@ def BodyFat(requests):
                                     forearm=forearm,
                                     gender=gender)
             user_bf.save()
+            requests.session['bf']=body_fat_weight
 
-    """Sending Mail"""
     if requests.POST.get('send_email'):
-        print("Basal Metabolic Rate-Email needs to be sent")
-    """Sending Mail Ends"""
+        send_mail=requests.session['email_id']
+        html_content=render_to_string("email/BMI_email.html",
+                                            {'name':requests.session['name'],
+                                            'email_id':requests.session['email_id'],
+                                            'mobile_no':requests.session['mobile_no'],
+                                            'value':requests.session['bf'],
+                                            'content':'Your calculated Body Fat Weight'})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            #subject
+            'Way To Wellness',
+            #content
+            'text_content',
+            #from email
+            settings.EMAIL_HOST_USER,
+            #to email
+            [send_mail,settings.EMAIL_HOST_USER],
+         )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
 
 
     bfJSON=dumps({
