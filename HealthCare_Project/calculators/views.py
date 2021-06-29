@@ -7,10 +7,12 @@ from way_to_wellness.forms import *
 def calculators(requests):
     return render(requests,'calculators/calculator_base.html')
 
-def BMI(requests):
+def BodyMassIndex(requests):
     bmiform=BMIform()
     userdetailform=UserDetailForm
     bmi=0
+    weight=0
+    height=0
 
     if requests.session.has_key('name') and requests.session.has_key('email_id') and requests.session.has_key('mobile_no'):
         values={
@@ -32,16 +34,19 @@ def BMI(requests):
         userdetailform=UserDetailForm(initial=changed_values)
         bmiform=BMIform(requests.POST)
         if bmiform.is_valid():
-            bmiform.save()
-            numerator=float(requests.POST.get('weight'))
-            denominator=float(requests.POST.get('height'))*float(requests.POST.get('height'))
-            bmi=numerator/denominator
-            requests.session['bmi']=bmi
-
-    """Sending Mail"""
+            weight=float(requests.POST.get('weight'))
+            height=float(requests.POST.get('height'))
+            denominator=height*height
+            bmi=weight/denominator
+            user_bmi=BMI.objects.create(name=requests.session['name'],
+                                    email_id=requests.session['email_id'],
+                                    mobile_no=requests.session['mobile_no'],
+                                    weight=weight,
+                                    height=height)
+            user_bmi.save()
     if requests.POST.get('send_email'):
-        print("BMI-Email needs to be sent")
-        print(requests.session['bmi'])
+        print("BMI-Mail sending")
+    """Sending Mail"""
     """Sending Mail Ends"""
 
     bmiJSON=dumps({
@@ -52,7 +57,7 @@ def BMI(requests):
 
     return render(requests,'calculators/BMI.html',context)
 
-def Water(requests):
+def WaterCalculator(requests):
     water_form=WaterForm()
     userdetailform=UserDetailForm()
     ans=0
@@ -77,18 +82,21 @@ def Water(requests):
         userdetailform=UserDetailForm(initial=changed_values)
         water_form=WaterForm(requests.POST)
         if water_form.is_valid():
-            water_form.save()
             weight=float(requests.POST.get('weight'))
             time=float(requests.POST.get('exercise_time'))
             F1=weight*0.044
             F2=(time/30)*0.355
             ans=F1+F2
-            requests.session['water']=ans
+            user_water=Water.objects.create(name=requests.session['name'],
+                                    email_id=requests.session['email_id'],
+                                    mobile_no=requests.session['mobile_no'],
+                                    weight=weight,
+                                    exercise_time=time)
+            user_water.save()
 
     """Sending Mail"""
     if requests.POST.get('send_email'):
         print("Water-Email needs to be sent")
-        print(requests.session['water'])
     """Sending Mail Ends"""
 
     waterJSON=dumps({
@@ -98,7 +106,7 @@ def Water(requests):
     context={'water_result':waterJSON,'water':ans,'userdetailform':userdetailform}
     return render(requests,'calculators/water.html',context)
 
-def WHR(requests):
+def WaistToHip(requests):
     whr_form=WHRform()
     userdetailform=UserDetailForm()
     whr=0
@@ -123,16 +131,20 @@ def WHR(requests):
         userdetailform=UserDetailForm(initial=changed_values)
         whr_form=WHRform(requests.POST)
         if whr_form.is_valid():
-            whr_form.save()
             num=float(requests.POST.get('waist'))
             den=float(requests.POST.get('hip'))
             whr=num/den
-            requests.session['whr']=whr
+            user_whr=WHR.objects.create(name=requests.session['name'],
+                                    email_id=requests.session['email_id'],
+                                    mobile_no=requests.session['mobile_no'],
+                                    waist=num,
+                                    hip=den)
+            user_whr.save()
+
 
     """Sending Mail"""
     if requests.POST.get('send_email'):
         print("Waist to Hip Ratio-Email needs to be sent")
-        print(requests.session['water'])
     """Sending Mail Ends"""
 
     whrJSON=dumps({
@@ -142,7 +154,7 @@ def WHR(requests):
     context={'whr_result':whrJSON,'whr':whr,'userdetailform':userdetailform}
     return render(requests,'calculators/WHR.html',context)
 
-def BMR(requests):
+def BasalMetabolicRate(requests):
     bmr_form=BMRform()
     userdetailform=UserDetailForm()
     bmr=0
@@ -167,8 +179,8 @@ def BMR(requests):
         userdetailform=UserDetailForm(initial=changed_values)
         bmr_form=BMRform(requests.POST)
         if bmr_form.is_valid():
-            bmr_form.save()
             weight=float(requests.POST.get('weight'))
+            h=float(requests.POST.get('height'))
             height=float(requests.POST.get('height'))*2.5
             age=float(requests.POST.get('age'))
             gender=requests.POST.get('gender')
@@ -176,22 +188,28 @@ def BMR(requests):
                 bmr=655+(9.6*weight)+(1.8*height)-(4.7*age)
             else:
                 bmr=66+(13.7*weight)+(5*height)-(6.8*age)
-
-            requests.session['bmr']=bmr
+            user_bmr=BMR.objects.create(name=requests.session['name'],
+                                    email_id=requests.session['email_id'],
+                                    mobile_no=requests.session['mobile_no'],
+                                    weight=weight,
+                                    height=h,
+                                    age=age,
+                                    gender=gender)
+            user_bmr.save()
 
     """Sending Mail"""
     if requests.POST.get('send_email'):
         print("Basal Metabolic Rate-Email needs to be sent")
-        print(requests.session['water'])
     """Sending Mail Ends"""
 
     bmrJSON=dumps({
         'bmr':bmr
     },default=str)
+
     context={'bmr_result':bmrJSON,'bmr':bmr,'userdetailform':userdetailform}
     return render(requests,'calculators/BMR.html',context)
 
-def CalMacroNutri(requests):
+def Calorie(requests):
     nutri_form=NutriForm()
     userdetailform=UserDetailForm()
     bmr=0
@@ -220,7 +238,6 @@ def CalMacroNutri(requests):
         userdetailform=UserDetailForm(initial=changed_values)
         nutri_form=NutriForm(requests.POST)
         if nutri_form.is_valid():
-            nutri_form.save()
             weight=float(requests.POST.get('weight'))
             height=float(requests.POST.get('height'))*2.5
             age=float(requests.POST.get('age'))
@@ -246,15 +263,19 @@ def CalMacroNutri(requests):
             protein=calorie*0.4
             carbohydrates=calorie*0.3
             fats=calorie*0.3
-            requests.session['calorie']=calorie
-            requests.session['protein']=protein
-            requests.session['carbohydrates']=carbohydrates
-            requests.session['fats']=fats
+            user_calorie=CalMacroNutri.objects.create(name=requests.session['name'],
+                                    email_id=requests.session['email_id'],
+                                    mobile_no=requests.session['mobile_no'],
+                                    weight=weight,
+                                    height=height,
+                                    age=age,
+                                    gender=gender,
+                                    lifestyle=lifestyle)
+            user_calorie.save()
     
     """Sending Mail"""
     if requests.POST.get('send_email'):
         print("Calorie and Nutrients-Email needs to be sent")
-        print(requests.session['water'])
     """Sending Mail Ends"""
                 
     nutriJSON=dumps({
@@ -263,10 +284,11 @@ def CalMacroNutri(requests):
         'carbohydrates':carbohydrates,
         'fats':fats
     },default=str)
+
     context={'nutri_result':nutriJSON,'calorie':calorie,'userdetailform':userdetailform}
     return render(requests,'calculators/nutri.html',context)
 
-def BF(requests):
+def BodyFat(requests):
     bf_form=BFform()
     userdetailform=UserDetailForm()
     body_fat_weight=0
@@ -291,10 +313,14 @@ def BF(requests):
         }
         userdetailform=UserDetailForm(initial=changed_values)
         bf_form=BFform(requests.POST)
+        
         if bf_form.is_valid():
-            bf_form.save()
-            gender=requests.POST.get('gender')
             weight=float(requests.POST.get('weight'))
+            waist=float(requests.POST.get('waist'))
+            wrist=float(requests.POST.get('wrist'))
+            hip=float(requests.POST.get('hip'))
+            forearm=float(requests.POST.get('forearm'))
+            gender=requests.POST.get('gender')
             if gender=="Female":
                 f1=float(requests.POST.get('weight'))*0.732+8.987
                 f2=float(requests.POST.get('wrist'))/3.140
@@ -310,14 +336,20 @@ def BF(requests):
                 lean_body_mass=f1-f2
                 body_fat_weight=weight-lean_body_mass
                 body_fat_percentage=(body_fat_weight*100)/weight
-            
-            requests.session['body_fat_weight']=body_fat_weight
-            requests.session['body_fat_percentage']=body_fat_percentage
+            user_bf=BF.objects.create(name=requests.session['name'],
+                                    email_id=requests.session['email_id'],
+                                    mobile_no=requests.session['mobile_no'],
+                                    weight=weight,
+                                    waist=waist,
+                                    wrist=wrist,
+                                    hip=hip,
+                                    forearm=forearm,
+                                    gender=gender)
+            user_bf.save()
 
     """Sending Mail"""
     if requests.POST.get('send_email'):
         print("Basal Metabolic Rate-Email needs to be sent")
-        print(requests.session['water'])
     """Sending Mail Ends"""
 
 
@@ -325,5 +357,6 @@ def BF(requests):
         'bfw':body_fat_weight,
         'bfp':body_fat_percentage,
     },default=str)
+
     context={'bf_result':bfJSON,'bfw':body_fat_weight,'bfp':body_fat_percentage,'userdetailform':userdetailform}
     return render(requests,'calculators/BF.html',context)

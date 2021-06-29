@@ -34,4 +34,4 @@ class NutriForm(forms.ModelForm):
 class BFform(forms.ModelForm):
     class Meta:
         model=BF
-        fields=['weight','waist','wrist','forearm']
+        fields=['weight','waist','wrist','hip','forearm','gender']
