@@ -9,68 +9,88 @@ class UserDetail(models.Model):
         return self.name
 
 class BMI(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
     weight=models.FloatField()
     height=models.FloatField()
 
     def __str__(self):
-        return str(self.id)
+        return self.name
     
     class Meta:
         verbose_name_plural="Body Mass Index"
 
 class Water(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
     weight=models.FloatField()
     exercise_time=models.FloatField()
 
     def __str__(self):
-        return str(self.id)
+        return self.name
     
     class Meta:
         verbose_name_plural="Water"
 
 class WHR(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
     waist=models.FloatField()
     hip=models.FloatField()
 
     def __str__(self):
-        return str(self.id)
+        return self.name
     
     class Meta:
         verbose_name_plural="Waist To Hip Ratio"
 
 class BMR(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
     weight=models.FloatField()
     height=models.FloatField()
     age=models.IntegerField()
-    gender=models.BooleanField()
+    gender=models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.id)
+        return self.name
     
     class Meta:
         verbose_name_plural="Basal Metabolic Rate"
 
 class CalMacroNutri(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
     weight=models.FloatField()
     height=models.FloatField()
     age=models.IntegerField()
-    gender=models.BooleanField()
-    lifestyle=models.TextField()
+    gender=models.CharField(max_length=100)
+    lifestyle=models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.id)
+        return self.id
     
     class Meta:
         verbose_name_plural="Calorie and Macro Nutritients"
 
 class BF(models.Model):
+    name=models.CharField(max_length=100)
+    email_id=models.EmailField()
+    mobile_no=models.IntegerField()
     weight=models.FloatField()
     waist=models.FloatField()
     wrist=models.FloatField()
+    hip=models.FloatField()
     forearm=models.FloatField()
+    gender=models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.id)
+        return self.name
     
     class Meta:
         verbose_name_plural="Body Fat"

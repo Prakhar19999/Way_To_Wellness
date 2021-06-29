@@ -141,4 +141,4 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST_USER="prakhar.srivastav@orderhealth.in"
-#EMAIL_HOST_PASSWORD="your smtp password"
+#EMAIL_HOST_PASSWORD="your Smtp Password"
