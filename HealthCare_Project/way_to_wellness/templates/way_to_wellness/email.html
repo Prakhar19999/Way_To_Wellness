@@ -1,9 +1,65 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Way to Wellness</title>
-    </head>
-    <body>
-        <h1>{{content}}</h1>
-    </body>
-</html>
+<div class="container" style="margin-left: 300px;">
+
+    <table width="100%">
+      <tr>
+        <td width="500px" height="100px" style="background: rgb(3, 184, 3);border-left:15px solid orange; padding-left:30px;font-size:26px;font-weight:bold;letter-spacing:-1px;"><span style="color: rgb(255, 255, 255);">Appointment Confirmation</span></td>
+        <td></td>
+      </tr>
+    </table> 
+    <h3>Contact Details</h3>
+    <hr style="width:550px; float: left;">
+    <br>
+    <table width="100%" style="border: 2px solid black;width:550px">
+      <tr>
+        <td style="height: 50px;" class="column-title">Name<td>
+        <td class="column-detail">{{name}}<td>
+      </tr>
+      <tr>
+        <td style="height: 50px;" class="column-title">Email<td>
+        <td class="column-detail">{{email_id}}<td>
+      </tr>
+      <tr>
+        <td style="height: 50px;" class="column-title">Contact number<td>
+        <td class="column-detail">{{mobile_no}}<td>
+      </td>
+    </table>
+
+    <h3>Fitness Details</h3>
+    <hr style="width:550px; float: left;">
+    <br>
+    <table width="100%" style="border: 2px solid black;width:550px">
+      <tr>
+        <td style="height: 50px;" class="column-title">Weight<td>
+        <td class="column-detail">{{weight}}<td>
+      </tr>
+      <tr>
+        <td style="height: 50px;" class="column-title">Height<td>
+        <td class="column-detail">{{height_ft}} feet {{height_inches}} inches<td>
+      </tr>
+      <tr>
+        <td style="height: 50px;" class="column-title">Age<td>
+        <td class="column-detail">{{age}}<td>
+      </td>
+    </table>
+
+    <h3>Appointment Details</h3>
+    <hr style="width:550px; float: left;">
+    <br>
+    <table width="100%" style="border: 2px solid black;width:550px">
+      <tr>
+        <td style="height: 50px;" class="column-title">Date<td>
+        <td class="column-detail">{{date}}<td>
+      </tr>
+      <tr>
+        <td style="height: 50px;" class="column-title">Time<td>
+        <td class="column-detail">{{time}}<td>
+      </tr>
+    </table>
+
+    <h3>Message</h3>
+    <hr style="width:550px; float: left;">
+    <br>
+    <textarea style="border: 2px solid black;width:550px;height:100px;">{{msg}}</textarea>
+
+</div>
+<!-- container -->
