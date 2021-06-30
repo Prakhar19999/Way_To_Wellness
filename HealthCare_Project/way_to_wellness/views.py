@@ -11,12 +11,31 @@ def home(requests):
    form=AppointmentForm()
    if requests.method == "POST":
       form=AppointmentForm(requests.POST)
-      print(requests.POST)
-      print(form.is_valid())
       if form.is_valid():
          form.save()
-         """send_mail=requests.POST.get('email')
-         html_content=render_to_string("way_to_wellness/email.html",{"title":'Test Email','content':'Hello'})
+         name=requests.POST.get('name')
+         email_id=requests.POST.get('email')
+         mobile_no=requests.POST.get('mobile_no')
+         weight=requests.POST.get('weight')
+         height_ft=requests.POST.get('height_ft')
+         height_inches=requests.POST.get('height_inches')
+         age=requests.POST.get('age')
+         date=requests.POST.get('date')
+         time=requests.POST.get('time')
+         msg=requests.POST.get('msg')
+
+         send_mail=requests.POST.get('email')
+         html_content=render_to_string("way_to_wellness/email.html",
+                                       {'name':name,
+                                       'email_id':email_id,
+                                       'mobile_no':mobile_no,
+                                       'weight':weight,
+                                       'height_ft':height_ft,
+                                       'height_inches':height_inches,
+                                       'age':age,
+                                       'date':date,
+                                       'time':time,
+                                       'msg':msg})
          text_content=strip_tags(html_content)
          email=EmailMultiAlternatives(
             #subject
@@ -29,7 +48,8 @@ def home(requests):
             [send_mail,settings.EMAIL_HOST_USER],
          )
          email.attach_alternative(html_content,"text/html")
-         email.send()"""
+         email.send()
+
    form=AppointmentForm()
    testimonials=Testimonials.objects.all()
    carousel=Carousel.objects.all().first()
