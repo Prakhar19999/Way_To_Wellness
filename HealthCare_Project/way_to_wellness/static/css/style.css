@@ -631,11 +631,18 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
   position: relative;
 }
 
-@media (max-height: 500px) {
-  #intro {
-    height: 150vh;
+@media (max-height: 1000px) {
+  #intro
+  {
+    height: 100vh;
+  }
+  #intro img
+  {
+    width:100%;
+    height:100vh;
   }
 }
+
 
 #intro .carousel, #intro .carousel-inner, #intro .carousel-item, #intro .carousel-item::before {
   position: absolute;
