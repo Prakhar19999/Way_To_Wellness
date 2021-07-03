@@ -3,7 +3,6 @@
 {%load static%}
 {% block content %}
 
-<link href="{% static 'css/links.css' %}" rel="stylesheet">
 <!-- sub-navbar -->
 <div class="sub-nav">
   <ul class="nav sub-nav-menu justify-content-center bg-dark fixed-top" style="margin-top: 90px;">
@@ -33,12 +32,48 @@
 </div>
 <!--sub-navbar-->
 
-  <div class="container" style="padding-top: 100px;">
+  <div class="container" style="padding-top: 90px;">
     <div class="row">
       <div class="col-md-12">
         <h3 class="jumbotron text-center">Body Mass Index Calculator</h3> 
-         
-        <form role="form" method="POST" action=""> 
+
+      <div class="calculator_row">
+        <form role="form" method="POST" action="">
+          {% csrf_token%}
+          <div class="wide column">
+              <div id="metric" ng-show="units == 'metric'">
+    
+                {{userdetailform|crispy}}
+    
+                <div class="form-group">
+                  <label for="weight_kg">Weight (kg):</label>
+                  <input type="number" id="weight" name="weight" placeholder="weight in kg" class="form-control" step="0.01">    
+                </div>
+                
+                <div class="form-group">
+                  <label for="height_cm">Height (m):</label>
+                  <input type="number" id="height" name="height" placeholder="height in meters" class="form-control" step="0.01">    
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Calculate</button>
+                <br>
+                <br>
+                
+              </div>
+          </div>
+          <div class="narrow column">
+              {%if bmi %}
+              <div class="jumbotron text-center">
+                <h3 class="text-muted">Calculated BMI</h3>
+              </div>
+              <p class="breadcrumb" id="BMI_result"></p>
+              <button type="submit" class="btn btn-success" name="send_email" 
+              value="Send Email">Get Info<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              {%endif%}
+          </div>
+      </form>
+    </div>
+        <!--<form role="form" method="POST" action=""> 
           {% csrf_token%}
           <div id="metric" ng-show="units == 'metric'">
 
@@ -59,7 +94,6 @@
             <br>
 
             {%if bmi %}
-            <!-- Calculated BMI is shown here -->
             <div class="jumbotron text-center">
               <h3 class="text-muted">Calculated BMI</h3>
             </div>
@@ -69,7 +103,7 @@
             {%endif%}
             
           </div>
-        </form>
+        </form>-->
         
         <br>
         <br>
