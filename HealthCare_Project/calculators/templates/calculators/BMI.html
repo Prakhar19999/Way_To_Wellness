@@ -3,7 +3,37 @@
 {%load static%}
 {% block content %}
 
-  <div class="container" style="padding-top: 115px;">
+<link href="{% static 'css/links.css' %}" rel="stylesheet">
+<!-- sub-navbar -->
+<div class="sub-nav">
+  <ul class="nav sub-nav-menu justify-content-center bg-dark fixed-top" style="margin-top: 90px;">
+      <li>
+          <button id="hamb">
+              <i class="fa fa-ellipsis-v" id="subnav-icon"></i>
+          </button>
+      </li>
+      <div id="visible">
+          <li class="subnav-item">
+              <a class="subnav-link" href="{% url 'BMR' %}">Basal Metabolic Rate Calculator</a>
+          </li>
+          <li class="subnav-item">
+              <a class="subnav-link" href="{%url 'nutri'%}">Calorie & Macro Nutrients Calculator</a>
+          </li>
+          <li class="subnav-item">
+              <a class="subnav-link" href="{%url 'Water'%}">Water Calculator</a>
+          </li>
+          <li class="subnav-item">
+              <a class="subnav-link" href="{%url 'WHR'%}">Waist to Hip Ratio Calculator</a>
+          </li>
+          <li class="subnav-item">
+              <a class="subnav-link" href="{%url 'BF'%}">Body Fat Calculator</a>
+          </li>   
+      </div>
+  </ul>
+</div>
+<!--sub-navbar-->
+
+  <div class="container" style="padding-top: 100px;">
     <div class="row">
       <div class="col-md-12">
         <h3 class="jumbotron text-center">Body Mass Index Calculator</h3> 

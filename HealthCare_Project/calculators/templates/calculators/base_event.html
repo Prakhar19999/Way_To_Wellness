@@ -37,6 +37,7 @@
   <link href="{% static 'css/appointment_button.css' %}" rel="stylesheet">
   <link href="{% static 'css/modal_form.css' %}" rel="stylesheet">
   <link href="{% static 'loader/loader.css' %}" rel="stylesheet">
+  <link href="{% static 'css/links.css' %}" rel="stylesheet">
 
 
 
@@ -66,7 +67,11 @@
 
           <div class="col-xl-11 d-flex align-items-center">
 
-            <a class="logo mr-auto">
+            <a class="logo mr-auto"><!--<img src="{%static 'img/waytowellness-logo.jpeg' %}" alt="" class="img-fluid">-->
+              <button style="color:#7FFFD4;"type="button" class="btn btn-unique btn-lg" data-toggle="modal" data-target="#modalContactForm">
+                <strong>Book an Appointment</strong>
+              </button>
+            </a>
 
               <nav class="nav-menu d-none d-lg-block">
 
@@ -90,11 +95,7 @@
 
     </header><!-- End Header -->
 
-    <a class="float">
-      <button type="button" class="btn btn-unique btn-lg rounded-circle" data-toggle="modal" data-target="#modalContactForm">
-        <i class="fa fa-pencil"></i>
-      </button>
-    </a>
+    
 
   <!-- Modal -->
 <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -292,6 +293,7 @@ aria-hidden="true">
   <!-- Template Main JS File -->
   <script src="{% static 'js/main1.js' %}"></script>
   <script src="{% static 'loader/loader.js' %}"></script>
+  <script src="{% static 'js/links.js' %}"></script>
 
 </body>
 
