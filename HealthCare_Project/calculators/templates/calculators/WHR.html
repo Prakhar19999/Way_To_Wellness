@@ -32,50 +32,57 @@
 </div>
 <!--sub-navbar-->
 
-  <div class="container" style="padding-top: 100px;">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="jumbotron text-center">Waist to Hip Ratio Calculator</h3> 
-         
-        <form role="form" method="POST" action=""> 
-          {% csrf_token%}
 
-          {{userdetailform|crispy}}
 
-          <div id="metric" ng-show="units == 'metric'">
-            <div class="form-group">
-              <label for="weight_kg">Waist Measurement (cm):</label>
-              <input type="number" id="waist" name="waist" placeholder="Waist Measurement" class="form-control" step="0.01">    
+<div class="container" style="padding-top: 90px;">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="jumbotron text-center">Waist to Hip Ratio Calculator</h3> 
+
+    <div class="calculator_row">
+      <form role="form" method="POST" action="">
+        {% csrf_token%}
+
+        <div class="wide column">
+            <div id="metric" ng-show="units == 'metric'">
+  
+              {{userdetailform|crispy}}
+  
+              <div class="form-group">
+                <label for="weight_kg">Waist Measurement (cm):</label>
+                <input type="number" id="waist" name="waist" placeholder="Waist Measurement" class="form-control" step="0.01">    
+              </div>
+              
+              <div class="form-group">
+                <label for="height_cm">Hip Measurement (cm):</label>
+                <input type="number" id="hip" name="hip" placeholder="Hip Measurement" class="form-control" step="0.01">
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Calculate</button>
+              <br>
+              <br>
             </div>
-            
-            <div class="form-group">
-              <label for="height_cm">Hip Measurement (cm):</label>
-              <input type="number" id="hip" name="hip" placeholder="Hip Measurement" class="form-control" step="0.01">
-            </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Calculate</button>
-
-            <br>
-            <br>
-            {%if whr %}
-            <!-- Calculated BMI is shown here -->
-            <div class="jumbotron text-center">
-              <h3 class="text-muted">Calculated Waist to Hip Ratio</h3>
-            </div>
-            <p class="breadcrumb" id="WHR_result"></p>
-            <button type="submit" class="btn btn-success" name="send_email" 
-                    value="Send Email">Receive info through Mail<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-            {%endif%}
-
+        <div class="narrow column">
+          {%if whr %}
+          <!-- Calculated BMI is shown here -->
+          <div class="jumbotron text-center">
+            <h3 class="text-muted">Calculated Waist to Hip Ratio</h3>
           </div>
-        </form>
-      </div>
+          <p class="breadcrumb" id="WHR_result"></p>
+          <button type="submit" class="btn btn-success" name="send_email" 
+                  value="Send Email">Get Info<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+          {%endif%}
+        </div>
+      </form>
+    </div>
+      <br>
+      <br>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
+</div>
+
   
   <!-- Scripts -->
   <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
