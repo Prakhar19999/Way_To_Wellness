@@ -32,114 +32,116 @@
 </div>
 <!--sub-navbar-->
 
-  <div class="container" style="padding-top: 100px;">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="jumbotron text-center">Calorie and Macro Nutrients Calculator</h3> 
-         
-        <form role="form" method="POST" action=""> 
-          {% csrf_token%}
+<div class="container" style="padding-top: 90px;">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="jumbotron text-center">Calorie & Macro Nutrients Calculator</h3>
 
-          {{userdetailform|crispy}}
+      <div class="calculator_row">
+      <form role="form" method="POST" action="">
+        {% csrf_token%}
 
-          <div id="metric" ng-show="units == 'metric'">
-            <div class="form-group">
-              <label for="weight">Weight (kg):</label>
-              <input type="number" id="weight" name="weight" placeholder="Weight in kg" class="form-control" step="0.01">    
+          <div class="wide column">
+            <div id="metric" ng-show="units == 'metric'">
+  
+              {{userdetailform|crispy}}
+
+              <div class="form-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" placeholder="Weight in kg" class="form-control" step="0.01">    
+              </div>
+              
+              <div class="form-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" placeholder="Height in cm" class="form-control" step="0.01">
+              </div>
+  
+              <div class="form-group">
+                <label for="age">Age (years):</label>
+                <input type="number" id="age" name="age" placeholder="Age in years" class="form-control">
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="Male" value="Male">
+                <label class="form-check-label" for="Male">Male</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="Female" value="Female">
+                <label class="form-check-label" for="Female">Female</label>
+              </div>
+  
+              <br>
+              <br>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lifestyle" id="Sedentary" value="Sedentary">
+                <label class="form-check-label" for="Sedentary">Sedentary</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lifestyle" id="Lightly Active" value="Lightly Active">
+                <label class="form-check-label" for="Lightly Active">Lightly Active</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lifestyle" id="Moderately Active" value="Moderately Active">
+                <label class="form-check-label" for="Moderately Active">Moderately Active</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lifestyle" id="Very Active" value="Very Active">
+                <label class="form-check-label" for="Very Active">Very Active</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lifestyle" id="Extra Active" value="Extra Active">
+                <label class="form-check-label" for="Extra Active">Extra Active</label>
+              </div>
+
+              <br>
+              <br>
+
+              <button type="submit" class="btn btn-primary">Calculate</button>
+              <br>
+              <br>
             </div>
-            
-            <div class="form-group">
-              <label for="height">Height (cm):</label>
-              <input type="number" id="height" name="height" placeholder="Height in cm" class="form-control" step="0.01">
-            </div>
+          </div>
 
-            <div class="form-group">
-              <label for="age">Age (years):</label>
-              <input type="number" id="age" name="age" placeholder="Age in years" class="form-control">
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="gender" id="Male" value="Male">
-              <label class="form-check-label" for="Male">Male</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="gender" id="Female" value="Female">
-              <label class="form-check-label" for="Female">Female</label>
-            </div>
-
-            <br>
-            <br>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="lifestyle" id="Sedentary" value="Sedentary">
-              <label class="form-check-label" for="Sedentary">Sedentary</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="lifestyle" id="Lightly Active" value="Lightly Active">
-              <label class="form-check-label" for="Lightly Active">Lightly Active</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="lifestyle" id="Moderately Active" value="Moderately Active">
-              <label class="form-check-label" for="Moderately Active">Moderately Active</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="lifestyle" id="Very Active" value="Very Active">
-              <label class="form-check-label" for="Very Active">Very Active</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="lifestyle" id="Extra Active" value="Extra Active">
-              <label class="form-check-label" for="Extra Active">Extra Active</label>
-            </div>
-
-            <br>
-            <br>
-            <br>
-
-
-            <button type="submit" class="btn btn-primary">Calculate</button>
-
-            <br>
-            <br>
-            
+          <div class="narrow column">
             {%if calorie %}
             <!-- Calculated BMI is shown here -->
             <div class="jumbotron text-center">
               <h3 class="text-muted">Calculated Calorie Required</h3>
             </div>
-            <p class="breadcrumb" id="Nutri_result"></p><br>
-            <div class="jumbotron">
-              <h5 class="text-center">You can get the required calorie from the following Nutrition proportions:</h5><br>
-              <p><strong><span id="Protein_result"></span></strong> grams of proteins</p>
-              <p><strong><span id="Carbohydrates_result"></span></strong> grams of carbohydrates</p>
-              <p><strong><span id="Fats_result"></span></strong> grams of fats</p>
-            </div>
-            <div class="breadcrumb text-center">
-              <h3 class="text-muted"><i class="fa fa-asterisk" aria-hidden="true"></i>NOTE</h3>
-              <p><span>You should intake the above mentioned calories to maintain your body weight. <strong>Reduce 500 calories</strong> if you want to lose weight and <strong>add 250-500 calories</strong> if you want to gain weight.</span></p>
-              <br>
-              <p>For more details, please call our coaches</p>
-            </div>
-    
+            <p class="breadcrumb" id="Nutri_result"></p>
+            <br>
             <button type="submit" class="btn btn-success" name="send_email" 
-            value="Send Email">Receive info through Mail<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            value="Send Email">Get Info<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             {%endif%}
-
+            <br>
+            <br>
           </div>
-        </form>
+      </form>
+    </div>
 
+      {%if calorie%}
+      <div class="jumbotron">
+        <h5 class="text-center">You can get the required calorie from the following Nutrition proportions:</h5><br>
+        <p><strong><span id="Protein_result"></span></strong> grams of proteins</p>
+        <p><strong><span id="Carbohydrates_result"></span></strong> grams of carbohydrates</p>
+        <p><strong><span id="Fats_result"></span></strong> grams of fats</p>
       </div>
+      <div class="breadcrumb text-center">
+        <h3 class="text-muted"><i class="fa fa-asterisk" aria-hidden="true"></i>NOTE</h3>
+        <p><span>You should intake the above mentioned calories to maintain your body weight. <strong>Reduce 500 calories</strong> if you want to lose weight and <strong>add 250-500 calories</strong> if you want to gain weight.</span></p>
+        <br>
+        <p>For more details, please call our coaches</p>
+      </div>
+      {%endif%}
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-
+</div>
 
   <script>
     var nutri_result=JSON.parse("{{nutri_result|escapejs}}")
