@@ -637,7 +637,7 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
   {
     width:100%;
     height:100vh;
-    margin-top:80px;
+    padding-top: 80px;
   }
 }
 
