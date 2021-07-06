@@ -13,7 +13,8 @@ class BMI(models.Model):
     email_id=models.EmailField()
     mobile_no=models.IntegerField()
     weight=models.FloatField()
-    height=models.FloatField()
+    height_ft=models.FloatField()
+    height_inches=models.FloatField()
 
     def __str__(self):
         return self.name
@@ -52,7 +53,8 @@ class BMR(models.Model):
     email_id=models.EmailField()
     mobile_no=models.IntegerField()
     weight=models.FloatField()
-    height=models.FloatField()
+    height_ft=models.FloatField()
+    height_inches=models.FloatField()
     age=models.IntegerField()
     gender=models.CharField(max_length=100)
 
@@ -67,13 +69,14 @@ class CalMacroNutri(models.Model):
     email_id=models.EmailField()
     mobile_no=models.IntegerField()
     weight=models.FloatField()
-    height=models.FloatField()
+    height_ft=models.FloatField()
+    height_inches=models.FloatField()
     age=models.IntegerField()
     gender=models.CharField(max_length=100)
     lifestyle=models.CharField(max_length=100)
 
     def __str__(self):
-        return self.id
+        return self.name
     
     class Meta:
         verbose_name_plural="Calorie and Macro Nutritients"
