@@ -17,6 +17,8 @@ def BodyMassIndex(requests):
     userdetailform=UserDetailForm
     bmi=0
     weight=0
+    height_ft=0
+    height_inches=0
     height=0
 
     if requests.session.has_key('name') and requests.session.has_key('email_id') and requests.session.has_key('mobile_no'):
@@ -40,14 +42,17 @@ def BodyMassIndex(requests):
         bmiform=BMIform(requests.POST)
         if bmiform.is_valid():
             weight=float(requests.POST.get('weight'))
-            height=float(requests.POST.get('height'))
+            height_ft=float(requests.POST.get('height_ft'))
+            height_inches=float(requests.POST.get('height_inches'))
+            height=(height_ft*0.3048)+(height_inches*0.0254)
             denominator=height*height
             bmi=weight/denominator
             user_bmi=BMI.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
                                     weight=weight,
-                                    height=height)
+                                    height_ft=height_ft,
+                                    height_inches=height_inches)
             user_bmi.save()
             requests.session['bmi']=bmi
 
@@ -240,11 +245,12 @@ def BasalMetabolicRate(requests):
         bmr_form=BMRform(requests.POST)
         if bmr_form.is_valid():
             weight=float(requests.POST.get('weight'))
-            h=float(requests.POST.get('height'))
-            height=float(requests.POST.get('height'))*2.5
+            height_ft=float(requests.POST.get('height_ft'))
+            height_inches=float(requests.POST.get('height_inches'))
+            height=(height_ft*30.48)+(height_inches*2.54)
             age=float(requests.POST.get('age'))
             gender=requests.POST.get('gender')
-            if gender=="Male":
+            if gender=="Female":
                 bmr=655+(9.6*weight)+(1.8*height)-(4.7*age)
             else:
                 bmr=66+(13.7*weight)+(5*height)-(6.8*age)
@@ -252,7 +258,8 @@ def BasalMetabolicRate(requests):
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
                                     weight=weight,
-                                    height=h,
+                                    height_ft=height_ft,
+                                    height_inches=height_inches,
                                     age=age,
                                     gender=gender)
             user_bmr.save()
@@ -294,7 +301,7 @@ def Calorie(requests):
     calorie=0
     protein=0
     carbohydrates=0
-    fats=0
+    fats=0  
 
     if requests.session.has_key('name') and requests.session.has_key('email_id') and requests.session.has_key('mobile_no'):
         values={
@@ -317,14 +324,16 @@ def Calorie(requests):
         nutri_form=NutriForm(requests.POST)
         if nutri_form.is_valid():
             weight=float(requests.POST.get('weight'))
-            height=float(requests.POST.get('height'))*2.5
+            height_ft=float(requests.POST.get('height_ft'))
+            height_inches=float(requests.POST.get('height_inches'))
+            height=(height_ft*30.48)+(height_inches*2.54)
             age=float(requests.POST.get('age'))
             gender=requests.POST.get('gender')
             lifestyle=requests.POST.get('lifestyle')
 
-            if gender=="Male":
+            if gender=="Female":
                 bmr=655+(9.6*weight)+(1.8*height)-(4.7*age)
-            elif gender=="Female":
+            elif gender=="Male":
                 bmr=66+(13.7*weight)+(5*height)-(6.8*age)
 
             if lifestyle=="Sedentary":
@@ -345,10 +354,12 @@ def Calorie(requests):
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
                                     weight=weight,
-                                    height=height,
+                                    height_ft=height_ft,
+                                    height_inches=height_inches,
                                     age=age,
                                     gender=gender,
                                     lifestyle=lifestyle)
+
             user_calorie.save()
             requests.session['calorie']=calorie
     

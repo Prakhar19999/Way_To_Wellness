@@ -312,17 +312,8 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 #header {
   transition: all 0.5s;
   z-index: 997;
-  padding: 26px 0;
-  background: rgba(0, 0, 0, 0.9);
-}
-
-#header.header-transparent {
-  background: transparent;
-}
-
-#header.header-scrolled {
-  background: rgba(0, 0, 0, 0.9);
   padding: 18px 0;
+  background: black;
 }
 
 #header .logo {

@@ -9,7 +9,7 @@ class UserDetailForm(forms.ModelForm):
 class BMIform(forms.ModelForm):
     class Meta:
         model=BMI
-        fields=['weight','height']
+        fields=['weight','height_ft','height_inches']
 
 class WaterForm(forms.ModelForm):
     class Meta:
@@ -24,12 +24,12 @@ class WHRform(forms.ModelForm):
 class BMRform(forms.ModelForm):
     class Meta:
         model=BMR
-        fields=['weight','height','age','gender']
+        fields=['weight','height_ft','height_inches','age','gender']
 
 class NutriForm(forms.ModelForm):
     class Meta:
         model=CalMacroNutri
-        fields=['weight','height','age','gender','lifestyle']
+        fields=['weight','height_ft','height_inches','age','gender','lifestyle']
 
 class BFform(forms.ModelForm):
     class Meta:
