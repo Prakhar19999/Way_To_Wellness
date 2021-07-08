@@ -23,6 +23,7 @@ class Testimonials(models.Model):
     profession=models.TextField(max_length=500)
     statement=models.TextField()
     image=models.ImageField(upload_to='landing_page_testimonials/')
+    url=models.URLField(blank=True)
 
     def __str__(self):
         return self.name
