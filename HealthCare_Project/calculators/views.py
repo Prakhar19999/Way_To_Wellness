@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 def calculators(requests):
-    return render(requests,'calculators/calculator_base.html')
+    return render(requests,'email/result_email.html')
 
 def BodyMassIndex(requests):
     bmiform=BMIform()
@@ -56,6 +56,18 @@ def BodyMassIndex(requests):
             user_bmi.save()
             requests.session['bmi']=bmi
 
+            requests.session['weight']=weight
+            requests.session['height_inches']=height_inches
+            requests.session['height_ft']=height_ft
+            requests.session['exercise_time']=0
+            requests.session['waist']=0
+            requests.session['hip']=0
+            requests.session['age']=0
+            requests.session['gender']=0
+            requests.session['lifestyle']=0
+            requests.session['wrist']=0
+            requests.session['forearm']=0
+
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
         html_content=render_to_string("email/result_email.html",
@@ -63,6 +75,10 @@ def BodyMassIndex(requests):
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
                                             'value':requests.session['bmi'],
+                                            'bmi':1,
+                                            'weight': requests.session['weight'],
+                                            'height_ft':requests.session['height_ft'],
+                                            'height_inches':requests.session['height_inches'],
                                             'content':'Your calculated Body Mass Index'})
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
@@ -124,6 +140,18 @@ def WaterCalculator(requests):
             user_water.save()
             requests.session['water']=ans
 
+            requests.session['weight']=weight
+            requests.session['height_inches']=0
+            requests.session['height_ft']=0
+            requests.session['exercise_time']=time
+            requests.session['waist']=0
+            requests.session['hip']=0
+            requests.session['age']=0
+            requests.session['gender']=0
+            requests.session['lifestyle']=0
+            requests.session['wrist']=0
+            requests.session['forearm']=0
+
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
         html_content=render_to_string("email/result_email.html",
@@ -131,6 +159,9 @@ def WaterCalculator(requests):
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
                                             'value':requests.session['water'],
+                                            'water':1,
+                                            'weight':requests.session['weight'],
+                                            'exercise_time':requests.session['exercise_time'],
                                             'content':'Your calculated Water requirement'})
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
@@ -188,6 +219,18 @@ def WaistToHip(requests):
                                     hip=den)
             user_whr.save()
             requests.session['whr']=whr
+            
+            requests.session['weight']=0
+            requests.session['height_inches']=0
+            requests.session['height_ft']=0
+            requests.session['exercise_time']=0
+            requests.session['waist']=num
+            requests.session['hip']=den
+            requests.session['age']=0
+            requests.session['gender']=0
+            requests.session['lifestyle']=0
+            requests.session['wrist']=0
+            requests.session['forearm']=0
 
 
     if requests.POST.get('send_email'):
@@ -197,6 +240,9 @@ def WaistToHip(requests):
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
                                             'value':requests.session['whr'],
+                                            'whr':1,
+                                            'waist':requests.session['waist'],
+                                            'hip':requests.session['hip'],
                                             'content':'Your calculated Waist To Hip Ratio'})
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
@@ -264,6 +310,18 @@ def BasalMetabolicRate(requests):
                                     gender=gender)
             user_bmr.save()
             requests.session['bmr']=bmr
+            
+            requests.session['weight']=weight
+            requests.session['height_inches']=height_inches
+            requests.session['height_ft']=height_ft
+            requests.session['exercise_time']=0
+            requests.session['waist']=0
+            requests.session['hip']=0
+            requests.session['age']=age
+            requests.session['gender']=gender
+            requests.session['lifestyle']=0
+            requests.session['wrist']=0
+            requests.session['forearm']=0
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
@@ -272,6 +330,12 @@ def BasalMetabolicRate(requests):
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
                                             'value':requests.session['bmr'],
+                                            'bmr':1,
+                                            'weight': requests.session['weight'],
+                                            'height_ft':requests.session['height_ft'],
+                                            'height_inches':requests.session['height_inches'],
+                                            'age':requests.session['age'],
+                                            'gender':requests.session['gender'],
                                             'content':'Your calculated Basal Metabolic Rate'})
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
@@ -362,6 +426,21 @@ def Calorie(requests):
 
             user_calorie.save()
             requests.session['calorie']=calorie
+            requests.session['protein']=protein
+            requests.session['carbohydrates']=carbohydrates
+            requests.session['fat']=fats
+            
+            requests.session['weight']=weight
+            requests.session['height_inches']=height_inches
+            requests.session['height_ft']=height_ft
+            requests.session['exercise_time']=0
+            requests.session['waist']=0
+            requests.session['hip']=0
+            requests.session['age']=age
+            requests.session['gender']=gender
+            requests.session['lifestyle']=lifestyle
+            requests.session['wrist']=0
+            requests.session['forearm']=0
     
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
@@ -370,6 +449,16 @@ def Calorie(requests):
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
                                             'value':requests.session['calorie'],
+                                            'nutri':1,
+                                            'weight': requests.session['weight'],
+                                            'height_ft':requests.session['height_ft'],
+                                            'height_inches':requests.session['height_inches'],
+                                            'age':requests.session['age'],
+                                            'gender':requests.session['gender'],
+                                            'lifestyle':requests.session['lifestyle'],
+                                            'fat':requests.session['fat'],
+                                            'carbohydrates':requests.session['carbohydrates'],
+                                            'protein':requests.session['protein'],
                                             'content':'Your calculated Calorie requirement'})
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
@@ -454,6 +543,19 @@ def BodyFat(requests):
                                     gender=gender)
             user_bf.save()
             requests.session['bf']=body_fat_weight
+            requests.session['bfp']=body_fat_percentage
+
+            requests.session['weight']=weight
+            requests.session['height_inches']=0
+            requests.session['height_ft']=0
+            requests.session['exercise_time']=0
+            requests.session['waist']=waist
+            requests.session['hip']=hip
+            requests.session['age']=0
+            requests.session['gender']=gender
+            requests.session['lifestyle']=0
+            requests.session['wrist']=wrist
+            requests.session['forearm']=forearm
 
     if requests.POST.get('send_email'):
         send_mail=requests.session['email_id']
@@ -462,6 +564,15 @@ def BodyFat(requests):
                                             'email_id':requests.session['email_id'],
                                             'mobile_no':requests.session['mobile_no'],
                                             'value':requests.session['bf'],
+                                            'bfp':requests.session['bfp'],
+                                            'bf':1,
+                                            'weight': requests.session['weight'],
+                                            'waist':requests.session['waist'],
+                                            'hip':requests.session['hip'],
+                                            'age':requests.session['age'],
+                                            'gender':requests.session['gender'],
+                                            'wrist':requests.session['wrist'],
+                                            'forearm':requests.session['forearm'],
                                             'content':'Your calculated Body Fat Weight'})
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
