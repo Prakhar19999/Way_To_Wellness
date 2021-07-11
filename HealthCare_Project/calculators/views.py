@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 def calculators(requests):
-    return render(requests,'email/result_email.html')
+    return render(requests,'calculators/calculator_base.html')
 
 def BodyMassIndex(requests):
     bmiform=BMIform()
