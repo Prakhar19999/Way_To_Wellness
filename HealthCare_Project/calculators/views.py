@@ -89,7 +89,7 @@ def BodyMassIndex(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -172,7 +172,7 @@ def WaterCalculator(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -253,7 +253,7 @@ def WaistToHip(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -346,7 +346,7 @@ def BasalMetabolicRate(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -469,7 +469,7 @@ def Calorie(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -583,7 +583,7 @@ def BodyFat(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
