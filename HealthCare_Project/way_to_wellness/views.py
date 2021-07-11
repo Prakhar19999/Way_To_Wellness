@@ -45,7 +45,7 @@ def home(requests):
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
          )
          email.attach_alternative(html_content,"text/html")
          email.send()
