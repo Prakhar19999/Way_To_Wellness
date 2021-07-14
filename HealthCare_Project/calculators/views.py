@@ -83,13 +83,13 @@ def BodyMassIndex(requests):
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
             #subject
-            'Way To Wellness',
+            'Way To Wellness-Body Mass Index Result',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -166,13 +166,13 @@ def WaterCalculator(requests):
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
             #subject
-            'Way To Wellness',
+            'Way To Wellness-Water Requirement Result',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -247,13 +247,13 @@ def WaistToHip(requests):
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
             #subject
-            'Way To Wellness',
+            'Way To Wellness-Waist To Hip Ratio Result',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -340,13 +340,13 @@ def BasalMetabolicRate(requests):
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
             #subject
-            'Way To Wellness',
+            'Way To Wellness-Basal Metabolic Rate Result',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -411,9 +411,9 @@ def Calorie(requests):
             elif lifestyle=="Extra Active":
                 calorie=bmr*1.9
             
-            protein=calorie*0.4
-            carbohydrates=calorie*0.3
-            fats=calorie*0.3
+            protein=(calorie*0.4)/9
+            carbohydrates=(calorie*0.3)/4
+            fats=(calorie*0.3)/4
             user_calorie=CalMacroNutri.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
@@ -463,13 +463,13 @@ def Calorie(requests):
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
             #subject
-            'Way To Wellness',
+            'Way To Wellness-Calorie and Macro Nutrients Result',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
@@ -577,13 +577,13 @@ def BodyFat(requests):
         text_content=strip_tags(html_content)
         email=EmailMultiAlternatives(
             #subject
-            'Way To Wellness',
+            'Way To Wellness-Body Fat Result',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
         email.attach_alternative(html_content,"text/html")
         email.send()
