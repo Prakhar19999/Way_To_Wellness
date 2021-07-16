@@ -46,7 +46,7 @@ def BodyMassIndex(requests):
             height_inches=float(requests.POST.get('height_inches'))
             height=(height_ft*0.3048)+(height_inches*0.0254)
             denominator=height*height
-            bmi=weight/denominator
+            bmi=round(weight/denominator,2)
             user_bmi=BMI.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
@@ -131,7 +131,7 @@ def WaterCalculator(requests):
             time=float(requests.POST.get('exercise_time'))
             F1=weight*0.044
             F2=(time/30)*0.355
-            ans=F1+F2
+            ans=round(F1+F2,2)
             user_water=Water.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
@@ -211,7 +211,7 @@ def WaistToHip(requests):
         if whr_form.is_valid():
             num=float(requests.POST.get('waist'))
             den=float(requests.POST.get('hip'))
-            whr=num/den
+            whr=round(num/den,2)
             user_whr=WHR.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
@@ -297,9 +297,9 @@ def BasalMetabolicRate(requests):
             age=float(requests.POST.get('age'))
             gender=requests.POST.get('gender')
             if gender=="Female":
-                bmr=655+(9.6*weight)+(1.8*height)-(4.7*age)
+                bmr=round(655+(9.6*weight)+(1.8*height)-(4.7*age),2)
             else:
-                bmr=66+(13.7*weight)+(5*height)-(6.8*age)
+                bmr=round(66+(13.7*weight)+(5*height)-(6.8*age),2)
             user_bmr=BMR.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
@@ -411,9 +411,10 @@ def Calorie(requests):
             elif lifestyle=="Extra Active":
                 calorie=bmr*1.9
             
-            protein=(calorie*0.4)/9
-            carbohydrates=(calorie*0.3)/4
-            fats=(calorie*0.3)/4
+            calorie=round(calorie,2)
+            protein=round((calorie*0.4)/9,2)
+            carbohydrates=round((calorie*0.3)/4,2)
+            fats=round((calorie*0.3)/4,2)
             user_calorie=CalMacroNutri.objects.create(name=requests.session['name'],
                                     email_id=requests.session['email_id'],
                                     mobile_no=requests.session['mobile_no'],
