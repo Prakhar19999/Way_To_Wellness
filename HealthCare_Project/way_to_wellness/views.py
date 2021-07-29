@@ -6,9 +6,11 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from json import dumps
 
 def home(requests):
    form=AppointmentForm()
+   message=""
    if requests.method == "POST":
       form=AppointmentForm(requests.POST)
       if form.is_valid():
@@ -39,16 +41,19 @@ def home(requests):
          text_content=strip_tags(html_content)
          email=EmailMultiAlternatives(
             #subject
-            'Testing',
+            'You have a new Appointment',
             #content
             'text_content',
             #from email
             settings.EMAIL_HOST_USER,
             #to email
-            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in'],
+            [send_mail,settings.EMAIL_HOST_USER,'manpreet.kaur@waytowellness.in','amitpathry@waytowellness.in'],
          )
          email.attach_alternative(html_content,"text/html")
          email.send()
+
+         message="Your appointment has been successfully booked"
+
 
    form=AppointmentForm()
    testimonials=Testimonials.objects.all()
@@ -60,6 +65,9 @@ def home(requests):
       carousel_items.pop(0)
    services=Services.objects.all()
    about=AboutUs.objects.all()
+
+   msgJSON=dumps({'message':message})
+
    context={
          'testimonials':testimonials,
          'carousel':carousel,
@@ -67,6 +75,7 @@ def home(requests):
          'about':about,
          'ap_form':form,
          'carousel_items':carousel_items,
+         'msgJSON':msgJSON,
       }
 
    return render(requests,'way_to_wellness/home_page.html',context)
