@@ -10,7 +10,6 @@ from json import dumps
 
 def home(requests):
    form=AppointmentForm()
-   message=""
    if requests.method == "POST":
       form=AppointmentForm(requests.POST)
       if form.is_valid():
@@ -52,8 +51,6 @@ def home(requests):
          email.attach_alternative(html_content,"text/html")
          email.send()
 
-         message="Your appointment has been successfully booked"
-
 
    form=AppointmentForm()
    testimonials=Testimonials.objects.all()
@@ -66,8 +63,6 @@ def home(requests):
    services=Services.objects.all()
    about=AboutUs.objects.all()
 
-   msgJSON=dumps({'message':message})
-
    context={
          'testimonials':testimonials,
          'carousel':carousel,
@@ -75,7 +70,6 @@ def home(requests):
          'about':about,
          'ap_form':form,
          'carousel_items':carousel_items,
-         'msgJSON':msgJSON,
       }
 
    return render(requests,'way_to_wellness/home_page.html',context)
