@@ -285,5 +285,13 @@ aria-hidden="true">
   <!-- Template Main JS File -->
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'loader/loader.js' %}"></script>
+
+<script>
+
+  let messages = JSON.parse("{{msgJSON|escapejs}}")
+  var msg=messages.message
+  if(msg)alert(msg)
+</script>
+
 </body>
 </html>
